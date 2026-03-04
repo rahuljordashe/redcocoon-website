@@ -1,0 +1,66 @@
+---
+const pathname = Astro.url.pathname;
+
+const tabs = [
+  { href: '/', icon: '🏠', label: 'Home' },
+  { href: '/#shop', icon: '🍶', label: 'Shop' },
+  { href: '/#hospitality', icon: '🏨', label: 'Trade' },
+  { href: '/#studio', icon: '📖', label: 'Studio' },
+  { href: '/#contact', icon: '📩', label: 'DM Us' },
+];
+---
+
+<div class="bottom-tab-bar">
+  {tabs.map(tab => (
+    <a href={tab.href} class:list={['tab-item', { active: pathname === tab.href }]}>
+      <span class="tab-icon">{tab.icon}</span>
+      <span class="tab-label">{tab.label}</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .bottom-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-top: 1px solid var(--color-beige-dark);
+    display: flex;
+    justify-content: space-around;
+    padding: 6px 0 8px;
+    z-index: 100;
+  }
+
+  .tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--color-clay);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .tab-item.active {
+    color: var(--color-terracotta);
+  }
+
+  .tab-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .tab-label {
+    line-height: 1;
+  }
+
+  @media (min-width: 769px) {
+    .bottom-tab-bar {
+      display: none;
+    }
+  }
+</style>

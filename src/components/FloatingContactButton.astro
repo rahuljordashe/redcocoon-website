@@ -1,0 +1,171 @@
+---
+import { getWhatsAppLink } from '../utils/whatsapp';
+import { getInstagramDMLink } from '../utils/instagram';
+---
+
+<div class="floating-contact" id="floatingContact">
+  <button
+    class="floating-trigger"
+    aria-label="Open contact options"
+    aria-expanded="false"
+    aria-controls="floatingPopup"
+  >
+    <span class="floating-icon">📩</span>
+  </button>
+  <div class="floating-popup" id="floatingPopup" aria-hidden="true">
+    <p class="floating-popup-title">Reserve a piece</p>
+    <a href={getInstagramDMLink()} target="_blank" rel="noopener noreferrer" class="floating-option floating-ig">Instagram DM</a>
+    <a href={getWhatsAppLink("Hi! I'd like to reserve a piece.")} target="_blank" rel="noopener noreferrer" class="floating-option floating-wa">WhatsApp</a>
+    <a href="#contact-form" class="floating-option floating-form">Reservation Form</a>
+  </div>
+</div>
+
+<style>
+  .floating-contact {
+    position: fixed;
+    bottom: 80px;
+    right: 16px;
+    z-index: 99;
+  }
+
+  .floating-trigger {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--gradient-instagram);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(131, 58, 180, 0.4);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .floating-trigger:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(131, 58, 180, 0.5);
+  }
+
+  .floating-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform var(--transition-fast);
+  }
+
+  .floating-contact.open .floating-icon {
+    transform: rotate(45deg);
+  }
+
+  .floating-popup {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    right: 0;
+    background: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-lg);
+    min-width: 200px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .floating-contact.open .floating-popup {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .floating-popup-title {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--color-espresso);
+    margin-bottom: var(--space-md);
+  }
+
+  .floating-option {
+    display: block;
+    text-align: center;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-radius: 100px;
+    text-decoration: none;
+    margin-bottom: var(--space-sm);
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+  }
+
+  .floating-option:last-child {
+    margin-bottom: 0;
+  }
+
+  .floating-option:hover {
+    transform: translateY(-1px);
+  }
+
+  .floating-ig {
+    background: var(--gradient-instagram);
+    color: #fff;
+  }
+
+  .floating-wa {
+    background: var(--color-whatsapp);
+    color: #fff;
+  }
+
+  .floating-form {
+    background: transparent;
+    color: var(--color-charcoal);
+    border: 1.5px solid var(--color-beige-dark);
+  }
+
+  .floating-form:hover {
+    border-color: var(--color-terracotta);
+    color: var(--color-terracotta);
+  }
+
+  @media (min-width: 769px) {
+    .floating-contact {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const container = document.getElementById('floatingContact');
+  const trigger = container?.querySelector('.floating-trigger');
+  const popup = document.getElementById('floatingPopup');
+
+  function togglePopup() {
+    if (!container || !trigger || !popup) return;
+    const isOpen = container.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+    popup.setAttribute('aria-hidden', String(!isOpen));
+  }
+
+  function closePopup() {
+    if (!container || !trigger || !popup) return;
+    container.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+    popup.setAttribute('aria-hidden', 'true');
+  }
+
+  trigger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePopup();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (container && !container.contains(e.target as Node)) {
+      closePopup();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closePopup();
+    }
+  });
+</script>

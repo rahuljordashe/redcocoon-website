@@ -1,0 +1,279 @@
+/* ==========================================================================
+   REDCOCOON POTTERY — Global Styles
+   Design tokens, reset, keyframes, utilities
+   Ported from New Draft Website/styles.css
+   ========================================================================== */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+    /* Color Palette */
+    --color-cream:       #F5F0E8;
+    --color-beige:       #E8DFD0;
+    --color-beige-dark:  #D4C8B5;
+    --color-sand:        #C4B59B;
+    --color-terracotta:  #C17747;
+    --color-terracotta-light: #D49A73;
+    --color-terracotta-dark:  #A35D30;
+    --color-sage:        #8B9E6B;
+    --color-sage-light:  #A8B88E;
+    --color-sage-dark:   #6B7D4F;
+    --color-clay:        #9E8B76;
+    --color-earth:       #6B5B4E;
+    --color-charcoal:    #3D352E;
+    --color-espresso:    #2A2420;
+    --color-white:       #FDFBF7;
+    --color-speckle:     #BFB5A3;
+    --color-whatsapp:    #25D366;
+    --color-ig-purple:   #833AB4;
+    --color-ig-red:      #FD1D1D;
+    --color-ig-orange:   #F77737;
+    --gradient-instagram: linear-gradient(135deg, var(--color-ig-purple), var(--color-ig-red), var(--color-ig-orange));
+
+    /* Typography */
+    --font-serif:    'DM Serif Display', 'Georgia', serif;
+    --font-elegant:  'Cormorant Garamond', 'Georgia', serif;
+    --font-sans:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Font Sizes — Small Text Scale */
+    --text-xs:   0.75rem;
+    --text-sm:   0.85rem;
+    --text-base: 0.92rem;
+
+    /* Letter Spacing Scale */
+    --ls-tight:  0.04em;
+    --ls-normal: 0.08em;
+    --ls-wide:   0.12em;
+    --ls-extra:  0.15em;
+
+    /* Spacing */
+    --space-xs:  0.25rem;
+    --space-sm:  0.5rem;
+    --space-md:  1rem;
+    --space-lg:  1.5rem;
+    --space-xl:  2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+    --space-5xl: 8rem;
+
+    /* Layout */
+    --container-max: 1280px;
+    --container-pad: 2rem;
+    --border-radius: 8px;
+    --border-radius-lg: 16px;
+    --border-radius-xl: 24px;
+
+    /* Transitions */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --transition-fast: 0.2s var(--ease-out);
+    --transition-med:  0.4s var(--ease-out);
+    --transition-slow: 0.6s var(--ease-out);
+
+    /* Noise Texture (shared) */
+    --noise-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-charcoal);
+    background-color: var(--color-white);
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+ul { list-style: none; }
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+}
+
+input { font-family: inherit; }
+
+/* ---------- Skip Link ---------- */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-md);
+    z-index: 10001;
+    background: var(--color-terracotta);
+    color: var(--color-white);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--color-terracotta-dark);
+    outline-offset: 2px;
+}
+
+/* ---------- Container ---------- */
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-pad);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: var(--ls-tight);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    transition: all var(--transition-med);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--color-terracotta);
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    background: var(--color-terracotta-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(193, 119, 71, 0.3);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--color-charcoal);
+    border: 1.5px solid var(--color-beige-dark);
+}
+
+.btn-ghost:hover {
+    border-color: var(--color-terracotta);
+    color: var(--color-terracotta);
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+    background: var(--color-whatsapp);
+    color: #fff;
+}
+
+.btn-whatsapp:hover {
+    background: #1fb855;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.btn-instagram {
+    background: var(--gradient-instagram);
+    color: #fff;
+}
+
+.btn-instagram:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(131, 58, 180, 0.3);
+}
+
+/* ---------- Keyframe Animations ---------- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes loading {
+    to { width: 100%; }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.95); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ---------- Scroll Animations ---------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---------- Focus Visible ---------- */
+:focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 2px;
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    :root {
+        --container-pad: 1.25rem;
+    }
+}

@@ -1,0 +1,149 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { getWhatsAppLink } from '../utils/whatsapp';
+import { getInstagramDMLink } from '../utils/instagram';
+
+const steps = [
+  { number: 1, title: 'Browse & Choose', desc: 'Find a piece you love — note the piece code' },
+  { number: 2, title: 'Message Us', desc: 'Send us the piece code via:' },
+  { number: 3, title: 'Bank Transfer', desc: "We'll confirm availability & send bank details" },
+  { number: 4, title: 'Collect or Deliver', desc: "Pick up from studio or we'll ship island-wide" },
+];
+---
+
+<section class="reservation" id="reservation">
+  <div class="container">
+    <SectionHeader tag="How to Reserve" title="Simple" titleAccent="Reservation Process" center />
+    <div class="reservation-steps">
+      {steps.map(step => (
+        <div class="reservation-step">
+          <span class="reservation-number">{step.number}</span>
+          <div>
+            <h3 class="reservation-step-title">{step.title}</h3>
+            <p class="reservation-step-desc">{step.desc}</p>
+            {step.number === 2 && (
+              <div class="reservation-channels">
+                <a href={getInstagramDMLink()} target="_blank" rel="noopener noreferrer" class="channel-badge channel-instagram">Instagram DM</a>
+                <a href={getWhatsAppLink("Hi! I'd like to reserve a piece.")} target="_blank" rel="noopener noreferrer" class="channel-badge channel-whatsapp">WhatsApp</a>
+                <a href="#contact-form" class="channel-badge channel-form">Form</a>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reservation {
+    padding: var(--space-5xl) 0;
+    background: var(--color-cream);
+  }
+
+  .reservation-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+  }
+
+  .reservation-step {
+    text-align: center;
+  }
+
+  .reservation-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-terracotta);
+    color: white;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .reservation-step-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-espresso);
+    margin-bottom: var(--space-sm);
+  }
+
+  .reservation-step-desc {
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    line-height: 1.6;
+  }
+
+  .reservation-channels {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-md);
+  }
+
+  .channel-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform var(--transition-fast), filter var(--transition-fast);
+  }
+
+  .channel-badge:hover {
+    transform: translateY(-1px);
+  }
+
+  .channel-instagram {
+    background: var(--gradient-instagram);
+    color: #fff;
+  }
+
+  .channel-whatsapp {
+    background: var(--color-whatsapp);
+    color: #fff;
+  }
+
+  .channel-form {
+    background: transparent;
+    color: var(--color-clay);
+    border: 1.5px solid var(--color-beige-dark);
+  }
+
+  .channel-form:hover {
+    border-color: var(--color-terracotta);
+    color: var(--color-terracotta);
+  }
+
+  @media (max-width: 768px) {
+    .reservation-steps {
+      grid-template-columns: 1fr;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .reservation-step {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-lg);
+      text-align: left;
+    }
+
+    .reservation-number {
+      flex-shrink: 0;
+    }
+
+    .reservation-channels {
+      justify-content: flex-start;
+    }
+  }
+</style>

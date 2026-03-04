@@ -1,0 +1,133 @@
+---
+---
+
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="false" aria-label="Mobile navigation">
+  <ul class="mobile-menu-links">
+    <li><a href="/#shop">Shop</a></li>
+    <li><a href="/#collections">Collections</a></li>
+    <li><a href="/#hospitality">Hospitality</a></li>
+    <li><a href="/#studio">Studio</a></li>
+    <li><a href="/#contact">Contact</a></li>
+    <li><a href="/#shop" class="mobile-shop-link">Shop Now</a></li>
+  </ul>
+</div>
+
+<style>
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-cream);
+    z-index: 999;
+    padding: 100px var(--container-pad) var(--container-pad);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-med);
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .mobile-menu-links a {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--color-espresso);
+    display: block;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all var(--transition-med);
+  }
+
+  .mobile-menu.active .mobile-menu-links a {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-menu.active .mobile-menu-links li:nth-child(1) a { transition-delay: 0.1s; }
+  .mobile-menu.active .mobile-menu-links li:nth-child(2) a { transition-delay: 0.15s; }
+  .mobile-menu.active .mobile-menu-links li:nth-child(3) a { transition-delay: 0.2s; }
+  .mobile-menu.active .mobile-menu-links li:nth-child(4) a { transition-delay: 0.25s; }
+  .mobile-menu.active .mobile-menu-links li:nth-child(5) a { transition-delay: 0.3s; }
+  .mobile-menu.active .mobile-menu-links li:nth-child(6) a { transition-delay: 0.35s; }
+
+  .mobile-menu-links .mobile-shop-link {
+    color: var(--color-terracotta);
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (navToggle && mobileMenu) {
+    function openMobileMenu() {
+      navToggle.classList.add('active');
+      navToggle.setAttribute('aria-expanded', 'true');
+      mobileMenu.classList.add('active');
+      mobileMenu.setAttribute('aria-modal', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('active');
+      mobileMenu.setAttribute('aria-modal', 'false');
+      document.body.style.overflow = '';
+      navToggle.focus();
+    }
+
+    navToggle.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+
+    // Close on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // ESC key close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
+
+    // Focus trap
+    mobileMenu.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const focusable = mobileMenu.querySelectorAll('a, button');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+  }
+</script>

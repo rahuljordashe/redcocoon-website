@@ -1,0 +1,157 @@
+---
+---
+
+<header class="header" id="header">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="nav-logo">
+      <img src="/logo.svg" alt="Redcocoon Pottery" class="nav-logo-img" width="44" height="44">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#shop">Shop</a></li>
+      <li><a href="/#collections">Collections</a></li>
+      <li><a href="/#hospitality">Hospitality</a></li>
+      <li><a href="/#studio">Studio</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="/#shop" class="nav-shop">Shop</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: var(--space-lg) 0;
+    transition: all var(--transition-med);
+  }
+
+  .header.scrolled {
+    padding: var(--space-md) 0;
+    background: rgba(253, 251, 247, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 200, 181, 0.3);
+  }
+
+  .nav {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo-img {
+    height: 44px;
+    width: auto;
+    transition: transform var(--transition-fast);
+  }
+
+  .nav-logo:hover .nav-logo-img {
+    transform: scale(1.05);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-xl);
+  }
+
+  .nav-links a {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    color: var(--color-earth);
+    position: relative;
+    padding: var(--space-xs) 0;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--color-terracotta);
+    transition: width var(--transition-med);
+  }
+
+  .nav-links a:hover {
+    color: var(--color-terracotta);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .nav-shop {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-white);
+    background: var(--color-charcoal);
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    transition: all var(--transition-fast);
+  }
+
+  .nav-shop:hover {
+    background: var(--color-terracotta);
+    transform: translateY(-1px);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 28px;
+    padding: 4px 0;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--color-charcoal);
+    border-radius: 2px;
+    transition: all var(--transition-fast);
+    transform-origin: center;
+  }
+
+  .nav-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+  }
+</style>

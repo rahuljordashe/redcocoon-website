@@ -1,0 +1,128 @@
+---
+import { getQuoteLink } from '../utils/whatsapp';
+const quoteLink = getQuoteLink();
+---
+
+<section class="hospitality" id="hospitality">
+  <div class="hospitality-noise" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hospitality-content">
+      <div class="hospitality-text">
+        <span class="hospitality-tag">For Hotels & Restaurants</span>
+        <h2 class="hospitality-title">Tableware as unique as your venue</h2>
+        <p class="hospitality-desc">We work with chefs and hoteliers across Sri Lanka to create bespoke ceramic collections — dinnerware, serving platters, and accent pieces that tell your brand's story.</p>
+        <div class="hospitality-actions">
+          <a href="/hospitality" class="btn btn-primary">View Portfolio</a>
+          <a href={quoteLink} target="_blank" rel="noopener noreferrer" class="btn btn-ghost hospitality-ghost">Request a Quote</a>
+        </div>
+      </div>
+      <div class="hospitality-photos">
+        <img src="/images/Dinner-sets5.jpg" alt="Custom dinner sets for hospitality" loading="lazy" decoding="async" width="400" height="300" />
+        <img src="/images/Tea-coffee-set5.jpg" alt="Tea and coffee sets for hotels" loading="lazy" decoding="async" width="400" height="300" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hospitality {
+    background: var(--color-espresso);
+    position: relative;
+    padding: var(--space-5xl) 0;
+    overflow: hidden;
+  }
+
+  .hospitality-noise {
+    position: absolute;
+    inset: 0;
+    background-image: var(--noise-texture);
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hospitality .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hospitality-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+
+  .hospitality-tag {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-extra);
+    color: var(--color-terracotta-light);
+    margin-bottom: var(--space-md);
+  }
+
+  .hospitality-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-cream);
+    line-height: 1.15;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hospitality-desc {
+    color: var(--color-beige);
+    line-height: 1.7;
+    margin-bottom: var(--space-2xl);
+    max-width: 480px;
+  }
+
+  .hospitality-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .hospitality-ghost {
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .hospitality-ghost:hover {
+    color: white;
+    border-color: white;
+  }
+
+  .hospitality-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .hospitality-photos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+    aspect-ratio: 4 / 3;
+  }
+
+  @media (max-width: 768px) {
+    .hospitality-content {
+      grid-template-columns: 1fr;
+    }
+
+    .hospitality-photos {
+      overflow-x: auto;
+      display: flex;
+      scroll-snap-type: x mandatory;
+    }
+
+    .hospitality-photos img {
+      min-width: 280px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+    }
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import { formatPrice } from '../utils/format';
+import { getInstagramDMLink } from '../utils/instagram';
+
+interface Props {
+  name: string;
+  code: string;
+  price: number;
+  currency?: string;
+  images: string[];
+  stock: number;
+  slug: string;
+}
+
+const { name, code, price, currency = 'LKR', images, stock, slug } = Astro.props;
+const dmLink = getInstagramDMLink();
+---
+
+<article class="product-card" data-tilt>
+  <a href={`/shop/${slug}`} class="product-card-link">
+    <div class="product-card-image">
+      <img src={images[0]} alt={name} loading="lazy" decoding="async" width="300" height="375" />
+      <span class="product-card-code">{code}</span>
+    </div>
+    <div class="product-card-info">
+      <h3 class="product-card-name">{name}</h3>
+      <span class="product-card-price">{formatPrice(price, currency)}</span>
+      {stock > 0 && <span class="product-card-stock">{stock} remaining</span>}
+    </div>
+  </a>
+  <a href={dmLink} target="_blank" rel="noopener noreferrer" class="btn btn-instagram product-card-reserve">
+    DM to Reserve
+  </a>
+</article>
+
+<style>
+  .product-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    overflow: visible;
+    transition: transform var(--transition-med), box-shadow var(--transition-med);
+    position: relative;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product-card-image {
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: var(--color-cream);
+    position: relative;
+  }
+
+  .product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-med);
+  }
+
+  .product-card:hover .product-card-image img {
+    transform: scale(1.03);
+  }
+
+  .product-card-code {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    background: rgba(42, 36, 32, 0.75);
+    color: var(--color-cream);
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  .product-card-info {
+    padding: var(--space-lg);
+  }
+
+  .product-card-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-espresso);
+    margin-bottom: var(--space-xs);
+  }
+
+  .product-card-price {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-terracotta);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .product-card-stock {
+    font-size: var(--text-xs);
+    color: var(--color-clay);
+  }
+
+  .product-card-reserve {
+    display: block;
+    text-align: center;
+    margin: 0 var(--space-lg) var(--space-lg);
+    font-size: var(--text-xs);
+    padding: 0.6rem 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .product-card-info {
+      padding: var(--space-md);
+    }
+
+    .product-card-name {
+      font-size: 0.95rem;
+    }
+
+    .product-card-reserve {
+      margin: 0 var(--space-md) var(--space-md);
+      padding: 0.5rem 0.75rem;
+      font-size: 0.65rem;
+    }
+  }
+</style>

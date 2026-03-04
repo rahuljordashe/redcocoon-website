@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(dir \"C:\\\\Users\\\\pcadmin\\\\Claude Code\\\\Test 2\\\\images\")",
+      "Bash(npx:*)",
+      "Bash(npm install:*)",
+      "Bash(vercel:*)"
+    ]
+  }
+}

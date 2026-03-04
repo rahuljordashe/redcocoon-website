@@ -1,0 +1,183 @@
+---
+import '../styles/global.css';
+import Preloader from '../components/Preloader.astro';
+import Navbar from '../components/Navbar.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+import BottomTabBar from '../components/BottomTabBar.astro';
+import FloatingContactButton from '../components/FloatingContactButton.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Redcocoon Pottery — Artisan Ceramics & Handmade Pottery',
+  description = 'Handcrafted pottery and ceramics by Redcocoon. Artisan dinnerware, vases, mugs, and home decor. Each piece is wheel-thrown and hand-finished with natural glazes.',
+} = Astro.props;
+
+const siteUrl = 'https://redcocoon-pottery.vercel.app';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={siteUrl}>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={`${siteUrl}/images/399x650-01.png`}>
+  <meta property="og:url" content={siteUrl}>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Redcocoon Pottery">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={`${siteUrl}/images/399x650-01.png`}>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/logo.svg">
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="/images/399x650-01.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Redcocoon Pottery",
+    "url": siteUrl,
+    "logo": `${siteUrl}/logo.svg`,
+    "description": "Handcrafted pottery and ceramics. Artisan dinnerware, vases, mugs, and home decor.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Colombo",
+      "addressCountry": "LK"
+    },
+    "sameAs": []
+  })} />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <Preloader />
+  <Navbar />
+  <MobileMenu />
+  <main id="main-content">
+    <slot />
+  </main>
+  <Footer />
+  <BackToTop />
+  <BottomTabBar />
+  <FloatingContactButton />
+
+  <script>
+    // Unified scroll handler (RAF-throttled)
+    const header = document.getElementById('header');
+    const backToTop = document.getElementById('backToTop');
+    const heroVisual = document.querySelector('.hero-visual');
+    let ticking = false;
+
+    function onScroll() {
+      const scrollY = window.scrollY;
+
+      // Header glassmorphism
+      if (header) {
+        if (scrollY > 60) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+
+      // Back to top visibility
+      if (backToTop) {
+        if (scrollY > 600) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+
+      // Parallax-lite on hero (desktop only, respects reduced motion)
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (heroVisual && !prefersReducedMotion && window.innerWidth > 768 && scrollY < window.innerHeight) {
+        heroVisual.style.transform = `translateY(${scrollY * 0.08}px)`;
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Back-to-top click
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Scroll-triggered fade-in animations
+    const animatedElements = document.querySelectorAll(
+      '.section-header, .product-card, .process-step, .insta-item, .reservation-step'
+    );
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in', 'visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    animatedElements.forEach((el, index) => {
+      el.classList.add('fade-in');
+      el.style.transitionDelay = `${(index % 4) * 0.1}s`;
+      fadeObserver.observe(el);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target && header) {
+          e.preventDefault();
+          const offset = header.offsetHeight + 20;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+<style>
+  /* Mobile bottom tab bar spacing */
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 70px;
+    }
+  }
+</style>

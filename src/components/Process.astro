@@ -1,0 +1,94 @@
+---
+import SectionHeader from './SectionHeader.astro';
+
+const steps = [
+  { number: '01', name: 'Shaping', image: 'Plates1.jpg', desc: 'We begin by wedging and conditioning locally sourced clay, then shape each piece by hand on the wheel or using slab techniques.' },
+  { number: '02', name: 'Glazing', image: 'Coasters18.jpg', desc: 'Our signature glazes are mixed in-house from natural minerals, applied by hand for depth and character unique to each piece.' },
+  { number: '03', name: 'Firing', image: 'Toast-Plates-new.jpg', desc: 'Each piece endures up to 1280\u00B0C in our kiln \u2014 a transformation that fuses clay and glaze into durable, food-safe stoneware.' },
+  { number: '04', name: 'Finishing', image: 'Fire-Glow.jpg', desc: 'Final inspection, sanding, and quality checks ensure every piece meets our standards before it reaches your hands.' },
+];
+---
+
+<section class="process" id="process">
+  <div class="container">
+    <SectionHeader tag="The Process" title="From Raw Earth" titleAccent="to Your Table" center />
+    <div class="process-steps">
+      {steps.map(step => (
+        <div class="step">
+          <div class="step-visual">
+            <span class="step-number">{step.number}</span>
+            <img src={`/images/${step.image}`} alt={step.name} loading="lazy" decoding="async" width="300" height="225" class="step-img" />
+          </div>
+          <div class="step-content">
+            <h3>{step.name}</h3>
+            <p>{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process {
+    padding: var(--space-5xl) 0;
+    background: var(--color-white);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .step-visual {
+    position: relative;
+    margin-bottom: var(--space-lg);
+  }
+
+  .step-number {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    font-family: var(--font-elegant);
+    font-size: 3rem;
+    color: white;
+    opacity: 0.5;
+    z-index: 2;
+    line-height: 1;
+  }
+
+  .step-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .step-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-espresso);
+    margin-bottom: var(--space-sm);
+  }
+
+  .step-content p {
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1024px) {
+    .process-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .process-steps {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+</style>
