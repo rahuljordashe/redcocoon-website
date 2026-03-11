@@ -105,7 +105,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Critical Fixes | 1/1 | Complete   | 2026-03-11 |
-| 2. Visual Redesign Foundation | 1/3 | In Progress|  |
+| 2. Visual Redesign Foundation | 2/3 | In Progress|  |
 | 3. Gallery & Products | 0/4 | Not started | - |
 | 4. Workshop & Hospitality | 0/2 | Not started | - |
 | 5. Performance & SEO | 0/2 | Not started | - |

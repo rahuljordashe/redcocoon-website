@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-visual-redesign-foundation 02-01-PLAN.md
-last_updated: "2026-03-11T23:10:44.559Z"
+stopped_at: Completed 02-visual-redesign-foundation 02-02-PLAN.md
+last_updated: "2026-03-11T23:17:17.137Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 3
   percent: 0
 ---
 
@@ -52,6 +52,7 @@ Progress: [░░░░░░░░░░] 0%
 *Updated after each plan completion*
 | Phase 01-critical-fixes P01 | 2 | 2 tasks | 4 files |
 | Phase 02-visual-redesign-foundation P01 | 3 | 3 tasks | 3 files |
+| Phase 02-visual-redesign-foundation P02 | 4min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,8 @@ Recent decisions affecting current work:
 - [Phase 02-visual-redesign-foundation]: Variable font CSS family names: 'Cormorant Garamond Variable' and 'Inter Variable' — must match @fontsource-variable registration in CSS custom properties
 - [Phase 02-visual-redesign-foundation]: --text-base changed from 0.92rem to 1rem (VIS-04 locked decision)
 - [Phase 02-visual-redesign-foundation]: DM Serif Display uses non-variable @fontsource package (400/400-italic) — no variable axes needed for display-only heading font
+- [Phase 02-visual-redesign-foundation]: Hero changed from dark gradient to cream background per VIS-01 locked decision (overrides CLAUDE.md legacy note)
+- [Phase 02-visual-redesign-foundation]: Noise overlay uses aria-hidden div (not CSS pseudo-element) to avoid z-index stacking issues with container children
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-11T23:10:44.554Z
-Stopped at: Completed 02-visual-redesign-foundation 02-01-PLAN.md
+Last session: 2026-03-11T23:17:17.130Z
+Stopped at: Completed 02-visual-redesign-foundation 02-02-PLAN.md
 Resume file: None

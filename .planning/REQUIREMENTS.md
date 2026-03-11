@@ -14,11 +14,11 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Visual Design
 
-- [ ] **VIS-01**: Site has a warm, earthy visual identity with updated spacing, layout, and color usage across all sections
+- [x] **VIS-01**: Site has a warm, earthy visual identity with updated spacing, layout, and color usage across all sections
 - [x] **VIS-02**: CSS custom property tokens are audited and all component styles use tokens (no hardcoded hex values)
-- [ ] **VIS-03**: All interactive CTAs have minimum 44px touch targets on mobile
+- [x] **VIS-03**: All interactive CTAs have minimum 44px touch targets on mobile
 - [x] **VIS-04**: Typography hierarchy is refined with clear heading/body/accent distinction
-- [ ] **VIS-05**: Hero and section backgrounds use subtle ambient CSS texture (noise, grain, or gradient depth)
+- [x] **VIS-05**: Hero and section backgrounds use subtle ambient CSS texture (noise, grain, or gradient depth)
 - [x] **VIS-06**: Fonts are self-hosted via Astro Fonts API or @fontsource (no Google Fonts CDN)
 - [x] **VIS-07**: Font loading uses font-display: swap with preconnect hints (no FOIT)
 
@@ -91,11 +91,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | FIX-01 | Phase 1 | Complete |
 | FIX-02 | Phase 1 | Complete |
-| VIS-01 | Phase 2 | Pending |
+| VIS-01 | Phase 2 | Complete |
 | VIS-02 | Phase 2 | Complete |
-| VIS-03 | Phase 2 | Pending |
+| VIS-03 | Phase 2 | Complete |
 | VIS-04 | Phase 2 | Complete |
-| VIS-05 | Phase 2 | Pending |
+| VIS-05 | Phase 2 | Complete |
 | VIS-06 | Phase 2 | Complete |
 | VIS-07 | Phase 2 | Complete |
 | GAL-01 | Phase 3 | Pending |
