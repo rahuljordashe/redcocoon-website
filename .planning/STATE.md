@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-11T21:52:08.575Z"
+stopped_at: Completed 01-critical-fixes-01-01-PLAN.md
+last_updated: "2026-03-11T22:07:12.978Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  completed_phases: 1
+  total_plans: 1
+  completed_plans: 1
   percent: 0
 ---
 
@@ -50,6 +50,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-critical-fixes P01 | 2 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -62,6 +63,8 @@ Recent decisions affecting current work:
 - Workshop as inquiry form (not calendar booking) — manual follow-up fits workflow
 - Build on existing Astro foundation — solid base, no reason to start over
 - Gallery by collection — focus on purchasable pieces
+- [Phase 01-critical-fixes]: Orphaned CSS classes (.channel-form, .floating-form, .btn-ghost, .hospitality-ghost) preserved when form anchors removed — Phase 4 can restore form link with zero CSS changes
+- [Phase 01-critical-fixes]: FloatingContactButton retains 2-option popup (IG DM + WA) — user decision to keep mini-menu, not simplify to single link
 
 ### Pending Todos
 
@@ -76,6 +79,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-11T21:52:08.569Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-critical-fixes/01-CONTEXT.md
+Last session: 2026-03-11T22:07:12.973Z
+Stopped at: Completed 01-critical-fixes-01-01-PLAN.md
+Resume file: None

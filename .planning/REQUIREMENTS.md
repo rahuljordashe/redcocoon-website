@@ -9,8 +9,8 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Critical Fixes
 
-- [ ] **FIX-01**: Broken `#contact-form` anchor in ReservationFlow is patched with a working target
-- [ ] **FIX-02**: Broken `/hospitality` link returns a valid page or anchor instead of 404
+- [x] **FIX-01**: Broken `#contact-form` anchor in ReservationFlow is patched with a working target
+- [x] **FIX-02**: Broken `/hospitality` link returns a valid page or anchor instead of 404
 
 ### Visual Design
 
@@ -89,8 +89,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FIX-01 | Phase 1 | Pending |
-| FIX-02 | Phase 1 | Pending |
+| FIX-01 | Phase 1 | Complete |
+| FIX-02 | Phase 1 | Complete |
 | VIS-01 | Phase 2 | Pending |
 | VIS-02 | Phase 2 | Pending |
 | VIS-03 | Phase 2 | Pending |
