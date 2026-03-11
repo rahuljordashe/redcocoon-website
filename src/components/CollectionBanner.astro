@@ -2,13 +2,14 @@
 ---
 
 <section class="collection-banner">
+  <div class="collection-noise" aria-hidden="true"></div>
   <div class="container">
     <div class="collection-inner">
       <div class="collection-text">
         <span class="collection-tag">Current Collection</span>
         <h2 class="collection-title">Monsoon Series</h2>
         <p class="collection-desc">Inspired by Sri Lanka's monsoon season — rich, moody glazes that capture the beauty of rain-soaked earth and stormy skies. Each piece carries the raw energy of the season.</p>
-        <a href="/shop" class="btn btn-primary">Explore Collection</a>
+        <a href="/shop" class="btn btn-primary collection-cta">Explore Collection</a>
       </div>
       <div class="collection-photo">
         <img src="/images/abyee.jpg" alt="Monsoon Series collection piece" loading="lazy" decoding="async" width="400" height="500" />
@@ -19,21 +20,35 @@
 
 <style>
   .collection-banner {
-    padding: var(--space-4xl) 0;
+    padding: var(--space-5xl) 0;
+    background: var(--color-espresso);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .collection-noise {
+    position: absolute;
+    inset: 0;
+    background-image: var(--noise-texture);
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .collection-banner .container {
+    position: relative;
+    z-index: 2;
   }
 
   .collection-inner {
-    background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-light));
-    border-radius: var(--border-radius-xl);
-    overflow: hidden;
     display: flex;
     align-items: center;
-    padding: 0;
+    gap: var(--space-3xl);
   }
 
   .collection-text {
     flex: 1;
-    padding: var(--space-3xl) var(--space-3xl);
+    padding: 0;
   }
 
   .collection-tag {
@@ -42,33 +57,33 @@
     font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: var(--ls-extra);
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-terracotta-light);
     margin-bottom: var(--space-md);
   }
 
   .collection-title {
     font-family: var(--font-serif);
     font-size: clamp(2rem, 4vw, 3rem);
-    color: white;
+    color: var(--color-cream);
     margin-bottom: var(--space-lg);
     line-height: 1.15;
   }
 
   .collection-desc {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--color-beige);
     max-width: 420px;
     margin-bottom: var(--space-2xl);
     line-height: 1.7;
   }
 
-  .collection-text .btn-primary {
-    background: white;
-    color: var(--color-terracotta);
+  .collection-cta {
+    background: var(--color-terracotta);
+    color: var(--color-white);
   }
 
-  .collection-text .btn-primary:hover {
-    background: var(--color-cream);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  .collection-cta:hover {
+    background: var(--color-terracotta-dark);
+    box-shadow: 0 8px 25px rgba(193, 119, 71, 0.3);
   }
 
   .collection-photo {
@@ -81,6 +96,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: var(--border-radius-img);
+    box-shadow: var(--shadow-card);
   }
 
   @media (max-width: 768px) {

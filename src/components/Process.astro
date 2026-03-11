@@ -4,12 +4,13 @@ import SectionHeader from './SectionHeader.astro';
 const steps = [
   { number: '01', name: 'Shaping', image: 'Plates1.jpg', desc: 'We begin by wedging and conditioning locally sourced clay, then shape each piece by hand on the wheel or using slab techniques.' },
   { number: '02', name: 'Glazing', image: 'Coasters18.jpg', desc: 'Our signature glazes are mixed in-house from natural minerals, applied by hand for depth and character unique to each piece.' },
-  { number: '03', name: 'Firing', image: 'Toast-Plates-new.jpg', desc: 'Each piece endures up to 1280\u00B0C in our kiln \u2014 a transformation that fuses clay and glaze into durable, food-safe stoneware.' },
+  { number: '03', name: 'Firing', image: 'Toast-Plates-new.jpg', desc: 'Each piece endures up to 1280°C in our kiln — a transformation that fuses clay and glaze into durable, food-safe stoneware.' },
   { number: '04', name: 'Finishing', image: 'Fire-Glow.jpg', desc: 'Final inspection, sanding, and quality checks ensure every piece meets our standards before it reaches your hands.' },
 ];
 ---
 
 <section class="process" id="process">
+  <div class="process-noise" aria-hidden="true"></div>
   <div class="container">
     <SectionHeader tag="The Process" title="From Raw Earth" titleAccent="to Your Table" center />
     <div class="process-steps">
@@ -32,7 +33,23 @@ const steps = [
 <style>
   .process {
     padding: var(--space-5xl) 0;
-    background: var(--color-white);
+    background: var(--color-espresso);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-noise {
+    position: absolute;
+    inset: 0;
+    background-image: var(--noise-texture);
+    background-repeat: repeat;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .process .container {
+    position: relative;
+    z-index: 2;
   }
 
   .process-steps {
@@ -62,19 +79,20 @@ const steps = [
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--border-radius-img);
+    box-shadow: var(--shadow-card);
   }
 
   .step-content h3 {
     font-family: var(--font-serif);
     font-size: 1.15rem;
-    color: var(--color-espresso);
+    color: var(--color-cream);
     margin-bottom: var(--space-sm);
   }
 
   .step-content p {
     font-size: var(--text-sm);
-    color: var(--color-clay);
+    color: var(--color-beige);
     line-height: 1.7;
   }
 
