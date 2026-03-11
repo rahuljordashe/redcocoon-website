@@ -32,23 +32,18 @@ const featured = allProducts.filter(p => p.data.featured).slice(0, 6);
 <style>
   .latest-pieces {
     padding: var(--space-5xl) 0;
+    background: var(--color-white);
   }
 
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-xl);
   }
 
   .latest-pieces-cta {
     text-align: center;
     margin-top: var(--space-3xl);
-  }
-
-  @media (max-width: 1024px) {
-    .products-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
   @media (max-width: 768px) {
