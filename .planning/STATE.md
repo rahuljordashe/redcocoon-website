@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-11T22:21:33.614Z"
+stopped_at: Completed 02-visual-redesign-foundation 02-01-PLAN.md
+last_updated: "2026-03-11T23:10:44.559Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
   completed_phases: 1
-  total_plans: 1
-  completed_plans: 1
+  total_plans: 4
+  completed_plans: 2
   percent: 0
 ---
 
@@ -51,6 +51,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01-critical-fixes P01 | 2 | 2 tasks | 4 files |
+| Phase 02-visual-redesign-foundation P01 | 3 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -65,6 +66,9 @@ Recent decisions affecting current work:
 - Gallery by collection — focus on purchasable pieces
 - [Phase 01-critical-fixes]: Orphaned CSS classes (.channel-form, .floating-form, .btn-ghost, .hospitality-ghost) preserved when form anchors removed — Phase 4 can restore form link with zero CSS changes
 - [Phase 01-critical-fixes]: FloatingContactButton retains 2-option popup (IG DM + WA) — user decision to keep mini-menu, not simplify to single link
+- [Phase 02-visual-redesign-foundation]: Variable font CSS family names: 'Cormorant Garamond Variable' and 'Inter Variable' — must match @fontsource-variable registration in CSS custom properties
+- [Phase 02-visual-redesign-foundation]: --text-base changed from 0.92rem to 1rem (VIS-04 locked decision)
+- [Phase 02-visual-redesign-foundation]: DM Serif Display uses non-variable @fontsource package (400/400-italic) — no variable axes needed for display-only heading font
 
 ### Pending Todos
 
@@ -79,6 +83,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-11T22:21:33.609Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-visual-redesign-foundation/02-CONTEXT.md
+Last session: 2026-03-11T23:10:44.554Z
+Stopped at: Completed 02-visual-redesign-foundation 02-01-PLAN.md
+Resume file: None
