@@ -89,40 +89,40 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FIX-01 | — | Pending |
-| FIX-02 | — | Pending |
-| VIS-01 | — | Pending |
-| VIS-02 | — | Pending |
-| VIS-03 | — | Pending |
-| VIS-04 | — | Pending |
-| VIS-05 | — | Pending |
-| VIS-06 | — | Pending |
-| VIS-07 | — | Pending |
-| GAL-01 | — | Pending |
-| GAL-02 | — | Pending |
-| GAL-03 | — | Pending |
-| GAL-04 | — | Pending |
-| GAL-05 | — | Pending |
-| GAL-06 | — | Pending |
-| GAL-07 | — | Pending |
-| GAL-08 | — | Pending |
-| WKSP-01 | — | Pending |
-| WKSP-02 | — | Pending |
-| WKSP-03 | — | Pending |
-| WKSP-04 | — | Pending |
-| HOSP-01 | — | Pending |
-| HOSP-02 | — | Pending |
-| ABOUT-01 | — | Pending |
-| INTL-01 | — | Pending |
-| PERF-01 | — | Pending |
-| SEO-01 | — | Pending |
-| SEO-02 | — | Pending |
+| FIX-01 | Phase 1 | Pending |
+| FIX-02 | Phase 1 | Pending |
+| VIS-01 | Phase 2 | Pending |
+| VIS-02 | Phase 2 | Pending |
+| VIS-03 | Phase 2 | Pending |
+| VIS-04 | Phase 2 | Pending |
+| VIS-05 | Phase 2 | Pending |
+| VIS-06 | Phase 2 | Pending |
+| VIS-07 | Phase 2 | Pending |
+| GAL-01 | Phase 3 | Pending |
+| GAL-02 | Phase 3 | Pending |
+| GAL-03 | Phase 3 | Pending |
+| GAL-04 | Phase 3 | Pending |
+| GAL-05 | Phase 3 | Pending |
+| GAL-06 | Phase 3 | Pending |
+| GAL-07 | Phase 3 | Pending |
+| GAL-08 | Phase 3 | Pending |
+| WKSP-01 | Phase 4 | Pending |
+| WKSP-02 | Phase 4 | Pending |
+| WKSP-03 | Phase 4 | Pending |
+| WKSP-04 | Phase 4 | Pending |
+| HOSP-01 | Phase 4 | Pending |
+| HOSP-02 | Phase 4 | Pending |
+| ABOUT-01 | Phase 3 | Pending |
+| INTL-01 | Phase 3 | Pending |
+| PERF-01 | Phase 5 | Pending |
+| SEO-01 | Phase 5 | Pending |
+| SEO-02 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 28 total
-- Mapped to phases: 0
-- Unmapped: 28 ⚠️
+- Mapped to phases: 28
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-12*
-*Last updated: 2026-03-12 after initial definition*
+*Last updated: 2026-03-12 after roadmap creation*
