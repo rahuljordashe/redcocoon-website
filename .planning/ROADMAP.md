@@ -28,10 +28,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. Clicking the "Form" / reservation form CTA in ReservationFlow navigates to a real target (not a missing anchor)
   2. Clicking any Hospitality navigation link returns a valid page or section (not a 404)
   3. The deployed site at redcocoon-website.vercel.app has no broken internal navigation links
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 01-01: Patch #contact-form anchor and /hospitality link
+- [ ] 01-01: Remove broken #contact-form anchors and consolidate Hospitality CTA
 
 ### Phase 2: Visual Redesign Foundation
 **Goal**: Users experience a warm, earthy visual identity across every section, with audited CSS tokens, self-hosted fonts, optimized images, and 44px touch targets site-wide
