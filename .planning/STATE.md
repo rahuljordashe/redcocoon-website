@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 02-visual-redesign-foundation 02-02-PLAN.md
-last_updated: "2026-03-11T23:17:17.137Z"
+stopped_at: "Checkpoint: 02-03 Task 2 human-verify"
+last_updated: "2026-03-11T23:23:20.973Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 0
 ---
 
@@ -53,6 +53,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01-critical-fixes P01 | 2 | 2 tasks | 4 files |
 | Phase 02-visual-redesign-foundation P01 | 3 | 3 tasks | 3 files |
 | Phase 02-visual-redesign-foundation P02 | 4min | 3 tasks | 8 files |
+| Phase 02-visual-redesign-foundation P03 | 4min | 1 tasks | 18 files |
 
 ## Accumulated Context
 
@@ -72,6 +73,9 @@ Recent decisions affecting current work:
 - [Phase 02-visual-redesign-foundation]: DM Serif Display uses non-variable @fontsource package (400/400-italic) — no variable axes needed for display-only heading font
 - [Phase 02-visual-redesign-foundation]: Hero changed from dark gradient to cream background per VIS-01 locked decision (overrides CLAUDE.md legacy note)
 - [Phase 02-visual-redesign-foundation]: Noise overlay uses aria-hidden div (not CSS pseudo-element) to avoid z-index stacking issues with container children
+- [Phase 02-visual-redesign-foundation]: Images COPIED to src/assets/ (not moved) — public/ originals remain for content collection string refs until Phase 3
+- [Phase 02-visual-redesign-foundation]: imageMap pattern (Record<string, ImageMetadata>) used for Process and InstagramFeed — Astro Image requires static imports, not runtime string interpolation
+- [Phase 02-visual-redesign-foundation]: Hero preload link removed from BaseLayout — Astro Image with loading=eager handles above-fold rendering; old path no longer valid after WebP conversion
 
 ### Pending Todos
 
@@ -86,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-11T23:17:17.130Z
-Stopped at: Completed 02-visual-redesign-foundation 02-02-PLAN.md
+Last session: 2026-03-11T23:23:20.966Z
+Stopped at: Checkpoint: 02-03 Task 2 human-verify
 Resume file: None
