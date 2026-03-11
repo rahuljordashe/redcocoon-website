@@ -1,5 +1,18 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import SectionHeader from './SectionHeader.astro';
+import platesImg from '../assets/images/Plates1.jpg';
+import coastersImg from '../assets/images/Coasters18.jpg';
+import toastPlatesImg from '../assets/images/Toast-Plates-new.jpg';
+import fireGlowImg from '../assets/images/Fire-Glow.jpg';
+
+const imageMap: Record<string, ImageMetadata> = {
+  'Plates1.jpg': platesImg,
+  'Coasters18.jpg': coastersImg,
+  'Toast-Plates-new.jpg': toastPlatesImg,
+  'Fire-Glow.jpg': fireGlowImg,
+};
 
 const steps = [
   { number: '01', name: 'Shaping', image: 'Plates1.jpg', desc: 'We begin by wedging and conditioning locally sourced clay, then shape each piece by hand on the wheel or using slab techniques.' },
@@ -18,7 +31,7 @@ const steps = [
         <div class="step">
           <div class="step-visual">
             <span class="step-number">{step.number}</span>
-            <img src={`/images/${step.image}`} alt={step.name} loading="lazy" decoding="async" width="300" height="225" class="step-img" />
+            <Image src={imageMap[step.image]} alt={step.name} width={300} height={225} loading="lazy" class="step-img" />
           </div>
           <div class="step-content">
             <h3>{step.name}</h3>

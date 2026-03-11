@@ -1,5 +1,22 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { getInstagramDMLink, getInstagramProfileLink } from '../utils/instagram';
+import img10 from '../assets/images/10.jpg';
+import imgAbyee from '../assets/images/abyee.jpg';
+import imgTeaCoffee from '../assets/images/Tea-coffee-set5.jpg';
+import imgKitchenware from '../assets/images/Kitchen-ware1.jpg';
+import imgWallDeco from '../assets/images/Wall-deco5.jpg';
+import imgEnamel from '../assets/images/Enamel.jpg';
+
+const imageMap: Record<string, ImageMetadata> = {
+  '10.jpg': img10,
+  'abyee.jpg': imgAbyee,
+  'Tea-coffee-set5.jpg': imgTeaCoffee,
+  'Kitchen-ware1.jpg': imgKitchenware,
+  'Wall-deco5.jpg': imgWallDeco,
+  'Enamel.jpg': imgEnamel,
+};
 
 const posts = [
   { src: '10.jpg', label: 'Glazing close-up', type: 'photo' },
@@ -22,7 +39,7 @@ const posts = [
     <div class="instagram-grid">
       {posts.map(post => (
         <div class="insta-item">
-          <img src={`/images/${post.src}`} alt={post.label} loading="lazy" decoding="async" width="300" height="300" class="insta-img" />
+          <Image src={imageMap[post.src]} alt={post.label} width={300} height={300} loading="lazy" class="insta-img" />
           {post.type === 'reel' && <span class="insta-reel-badge">REEL</span>}
         </div>
       ))}

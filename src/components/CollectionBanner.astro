@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import collectionImg from '../assets/images/abyee.jpg';
 ---
 
 <section class="collection-banner">
@@ -12,7 +14,13 @@
         <a href="/shop" class="btn btn-primary collection-cta">Explore Collection</a>
       </div>
       <div class="collection-photo">
-        <img src="/images/abyee.jpg" alt="Monsoon Series collection piece" loading="lazy" decoding="async" width="400" height="500" />
+        <Image
+          src={collectionImg}
+          alt="Monsoon Series collection piece"
+          width={400}
+          height={500}
+          loading="lazy"
+        />
       </div>
     </div>
   </div>

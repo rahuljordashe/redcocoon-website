@@ -1,5 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { getQuoteLink } from '../utils/whatsapp';
+import dinnerSetsImg from '../assets/images/Dinner-sets5.jpg';
+import teaCoffeeImg from '../assets/images/Tea-coffee-set5.jpg';
+
 const quoteLink = getQuoteLink();
 ---
 
@@ -16,8 +20,8 @@ const quoteLink = getQuoteLink();
         </div>
       </div>
       <div class="hospitality-photos">
-        <img src="/images/Dinner-sets5.jpg" alt="Custom dinner sets for hospitality" loading="lazy" decoding="async" width="400" height="300" />
-        <img src="/images/Tea-coffee-set5.jpg" alt="Tea and coffee sets for hotels" loading="lazy" decoding="async" width="400" height="300" />
+        <Image src={dinnerSetsImg} alt="Custom dinner sets for hospitality" width={400} height={300} loading="lazy" />
+        <Image src={teaCoffeeImg} alt="Tea and coffee sets for hotels" width={400} height={300} loading="lazy" />
       </div>
     </div>
   </div>
