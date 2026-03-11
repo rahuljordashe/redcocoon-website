@@ -31,7 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01: Remove broken #contact-form anchors and consolidate Hospitality CTA
+- [x] 01-01: Remove broken #contact-form anchors and consolidate Hospitality CTA
 
 ### Phase 2: Visual Redesign Foundation
 **Goal**: Users experience a warm, earthy visual identity across every section, with audited CSS tokens, self-hosted fonts, optimized images, and 44px touch targets site-wide
@@ -43,12 +43,12 @@ Plans:
   3. Every CTA button and inquiry link is at least 44px tall and tappable without precision on a phone screen
   4. Fonts load instantly with no invisible-text flash (FOIT) — headings appear on first paint via font-display swap
   5. Page backgrounds and hero use subtle visual depth (CSS texture, noise, or gradient) that distinguishes the site from generic templates
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: CSS token audit and global.css redesign pass
-- [ ] 02-02: Font self-hosting and loading optimization
-- [ ] 02-03: Image pipeline migration to Astro Image component
+- [ ] 02-01-PLAN.md — CSS token audit, font self-hosting via @fontsource, typography scale update
+- [ ] 02-02-PLAN.md — Section backgrounds, spacing rhythm, touch targets, card shadows
+- [ ] 02-03-PLAN.md — Image pipeline migration to Astro Image + visual checkpoint
 
 ### Phase 3: Gallery & Products
 **Goal**: Users can browse, filter, and inspect all products on a dedicated gallery page, and reach out to inquire on any piece — including sold-out pieces via a commission path
@@ -100,7 +100,7 @@ Plans:
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
