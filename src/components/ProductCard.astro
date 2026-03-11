@@ -35,16 +35,17 @@ const dmLink = getInstagramDMLink();
 
 <style>
   .product-card {
-    background: white;
+    background: var(--color-white);
     border-radius: var(--border-radius-lg);
     overflow: visible;
     transition: transform var(--transition-med), box-shadow var(--transition-med);
     position: relative;
+    box-shadow: var(--shadow-card);
   }
 
   .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-card-hover);
   }
 
   .product-card-link {
@@ -58,6 +59,7 @@ const dmLink = getInstagramDMLink();
     aspect-ratio: 4 / 5;
     background: var(--color-cream);
     position: relative;
+    border-radius: var(--border-radius-img) var(--border-radius-img) 0 0;
   }
 
   .product-card-image img {
@@ -115,7 +117,8 @@ const dmLink = getInstagramDMLink();
     text-align: center;
     margin: 0 var(--space-lg) var(--space-lg);
     font-size: var(--text-xs);
-    padding: 0.6rem 1rem;
+    padding: 0.75rem 1rem;
+    min-height: 44px;
   }
 
   @media (max-width: 768px) {
@@ -129,8 +132,9 @@ const dmLink = getInstagramDMLink();
 
     .product-card-reserve {
       margin: 0 var(--space-md) var(--space-md);
-      padding: 0.5rem 0.75rem;
-      font-size: 0.65rem;
+      padding: 0.65rem 0.75rem;
+      min-height: 44px;
+      font-size: 0.7rem;
     }
   }
 </style>
