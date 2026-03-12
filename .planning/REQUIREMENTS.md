@@ -44,8 +44,8 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 - [ ] **HOSP-01**: Hospitality B2B section has tailored messaging for hotels, restaurants, and cafes
 - [ ] **HOSP-02**: Hospitality section has a separate inquiry path (WhatsApp with B2B pre-filled message)
-- [ ] **ABOUT-01**: Site includes an About the maker / studio story section
-- [ ] **INTL-01**: International shipping/inquiry clarity paragraph is visible near the reservation flow
+- [x] **ABOUT-01**: Site includes an About the maker / studio story section
+- [x] **INTL-01**: International shipping/inquiry clarity paragraph is visible near the reservation flow
 
 ### Performance & SEO
 
@@ -112,8 +112,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | WKSP-04 | Phase 4 | Pending |
 | HOSP-01 | Phase 4 | Pending |
 | HOSP-02 | Phase 4 | Pending |
-| ABOUT-01 | Phase 3 | Pending |
-| INTL-01 | Phase 3 | Pending |
+| ABOUT-01 | Phase 3 | Complete |
+| INTL-01 | Phase 3 | Complete |
 | PERF-01 | Phase 5 | Pending |
 | SEO-01 | Phase 5 | Pending |
 | SEO-02 | Phase 5 | Pending |

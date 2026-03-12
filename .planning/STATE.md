@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-gallery-products-03-PLAN.md
-last_updated: "2026-03-12T05:39:08.782Z"
+stopped_at: Completed 03-gallery-products-04-PLAN.md
+last_updated: "2026-03-12T05:51:13.664Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
   percent: 0
 ---
 
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-gallery-products P01 | 3min | 2 tasks | 8 files |
 | Phase 03-gallery-products P02 | 3min | 2 tasks | 5 files |
 | Phase 03-gallery-products P03 | 3min | 2 tasks | 4 files |
+| Phase 03-gallery-products P04 | 10min | 1 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -91,6 +92,8 @@ Recent decisions affecting current work:
 - [Phase 03-gallery-products]: GLightbox href points to public/ image path for lightbox overlay; Astro Image handles WebP for visible img
 - [Phase 03-gallery-products]: Related products in More from this collection use inline card markup not ProductCard — consistent with GalleryGrid approach
 - [Phase 03-gallery-products]: CommissionCTA shown only when isSold && isMTO — plain sold-out shows sold notice; available shows reserve CTAs
+- [Phase 03-gallery-products]: Placeholder maker copy flagged with italic note inside AboutMaker.astro — signals real content needed before launch
+- [Phase 03-gallery-products]: Espresso background on AboutMaker section maintains alternating light/dark rhythm following the cream gallery section
 
 ### Pending Todos
 
@@ -105,6 +108,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T05:39:08.768Z
-Stopped at: Completed 03-gallery-products-03-PLAN.md
+Last session: 2026-03-12T05:51:13.659Z
+Stopped at: Completed 03-gallery-products-04-PLAN.md
 Resume file: None
