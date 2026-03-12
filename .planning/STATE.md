@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: planning
 stopped_at: Completed 04-workshop-hospitality-01-PLAN.md
-last_updated: "2026-03-12T07:10:51.303Z"
+last_updated: "2026-03-12T07:15:54.345Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
