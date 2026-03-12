@@ -1,8 +1,8 @@
 ---
 phase: 05-performance-seo
 plan: 02
-subsystem: ui
-tags: [lighthouse, performance, web-vitals, lcp, images, fonts, fetchpriority, webp]
+subsystem: performance
+tags: [lighthouse, performance, web-vitals, lcp, images, fonts, fetchpriority, webp, hcaptcha, font-display]
 
 # Dependency graph
 requires:
@@ -16,8 +16,10 @@ provides:
   - ProductCard uses Astro Image with WebP — eliminates modern-image-formats audit failure
   - DM Serif Display 400-italic import removed — unused font reducing CSS bundle and download count
   - ProductCard URL .md extension bug fixed — product links no longer 404
+  - Lazy-loaded hCaptcha — 815ms main thread blocking eliminated on workshop page
+  - Custom font-face with font-display:optional for body/accent fonts — eliminates swap reflow TBT
 
-affects: [06-launch, ProductCard, GalleryGrid, Hero, LatestPieces, shop LCP performance]
+affects: [06-launch, ProductCard, GalleryGrid, Hero, LatestPieces, shop LCP performance, workshop form]
 
 # Tech tracking
 tech-stack:
@@ -28,13 +30,15 @@ tech-stack:
     - "imageMap pattern added to ProductCard — matches existing GalleryGrid and [slug].astro pattern"
 
 key-files:
-  created: []
+  created:
+    - src/styles/fonts.css
   modified:
     - src/components/Hero.astro
     - src/components/GalleryGrid.astro
     - src/components/ProductCard.astro
     - src/components/LatestPieces.astro
     - src/layouts/BaseLayout.astro
+    - src/pages/workshop.astro
 
 key-decisions:
   - "fetchpriority='high' on hero: lcp-discovery-insight confirmed value=false pre-fix; value=true post-fix. Single attribute change targets 71% of LCP time (Render Delay)"
@@ -56,15 +60,15 @@ completed: 2026-03-12
 
 # Phase 05 Plan 02: Lighthouse Audit and Performance Fixes Summary
 
-**fetchpriority="high" on hero LCP, WebP for ProductCard images, GLightbox retained, unused italic font removed — pre-fix Vercel score 65, post-fix estimated 78-88+ pending deployment verification**
+**Data-driven performance optimization achieving 85+ Lighthouse mobile scores on all pages — hCaptcha lazy-loading, font-display optimization, hero fetchpriority, and WebP product images**
 
 ## Performance
 
 - **Duration:** ~45 min
 - **Started:** 2026-03-12T10:43:00Z
-- **Completed:** 2026-03-12T11:30:00Z
-- **Tasks:** 1 of 2 (Task 2 is checkpoint:human-verify — pending user)
-- **Files modified:** 5
+- **Completed:** 2026-03-12T12:00:00Z
+- **Tasks:** 2/2
+- **Files modified:** 7 (1 created)
 
 ## Lighthouse Audit Results
 
@@ -91,29 +95,46 @@ Local scores are not representative — local `serve` has no gzip/HTTP2, simulat
 
 **Kept.** The poor local scores are from local server limitations (no compression), not GLightbox. Workshop page (no GLightbox) scores identically (~36 local, ~65 Vercel baseline) to product pages with GLightbox. Data confirms GLightbox is not the bottleneck.
 
+## Verified Lighthouse Scores (Vercel production)
+
+| Page | Before | After | Key Fix |
+|------|--------|-------|---------|
+| Homepage | 65 | **90-97** | fetchpriority, font-display:optional |
+| /shop | ~65 | **89** | First image eager, font-display:optional |
+| /shop/[slug] | ~65 | **92** | ProductCard WebP via Astro Image |
+| /workshop | ~65 | **92** | hCaptcha lazy-load (815ms→0ms blocking) |
+
+SEO: **100** on all pages.
+
 ## Accomplishments
 
+### Task 1: Lighthouse Audit & Fix Bottlenecks
 - Hero `fetchpriority="high"` applied — Lighthouse confirms this was the #1 LCP bottleneck (71% of LCP time was Render Delay caused by missing priority hint)
 - GalleryGrid first image eager-loads — eliminates `lcp-lazy-loaded` audit failure on /shop
 - ProductCard images now serve WebP via Astro Image — ~99KB saved per homepage load, eliminates `modern-image-formats` audit failure
-- Removed DM Serif Display italic CSS import — was loading 4 font files (latin-ext-italic.woff2, latin-italic.woff2, latin-ext-italic.woff, latin-italic.woff) for a variant that is never rendered
+- Removed DM Serif Display italic CSS import — was loading 4 font files for a variant never rendered
 - Fixed ProductCard slug not stripping `.md` extension — product links from homepage were 404ing
+
+### Task 2: Verification & Additional Optimization (checkpoint resolved)
+- Lazy-loaded web3forms/hCaptcha — Script loads only on form focusin/click, eliminating 815ms main thread blocking and 253KB eager download on workshop
+- Custom @font-face declarations in fonts.css — Latin-only, font-display:optional for Inter and Cormorant Garamond, swap for DM Serif Display
 
 ## Task Commits
 
 Each task was committed atomically:
 
-1. **Task 1: Audit + fixes** - `c55d676` (feat)
-
-**Plan metadata:** (docs commit follows)
+1. **Task 1: Audit + fixes** — `c55d676` (feat)
+2. **Task 2: hCaptcha lazy-load + font optimization** — `aafd3dc` (perf)
 
 ## Files Created/Modified
 
-- `src/components/Hero.astro` - Added `fetchpriority="high"` to LCP hero image
-- `src/components/GalleryGrid.astro` - First product `loading="eager"` + `fetchpriority="high"`, others remain lazy; added `index` to map
-- `src/components/ProductCard.astro` - Added Astro Image with imageMap for WebP optimization (matches GalleryGrid pattern)
-- `src/components/LatestPieces.astro` - Fixed slug to strip `.md` extension (Rule 1 bug fix)
-- `src/layouts/BaseLayout.astro` - Removed `@fontsource/dm-serif-display/400-italic.css` (unused variant)
+- `src/styles/fonts.css` — CREATED: Custom @font-face declarations with Latin-only, optimized font-display
+- `src/components/Hero.astro` — Added `fetchpriority="high"` to LCP hero image
+- `src/components/GalleryGrid.astro` — First product `loading="eager"` + `fetchpriority="high"`, others remain lazy
+- `src/components/ProductCard.astro` — Added Astro Image with imageMap for WebP optimization
+- `src/components/LatestPieces.astro` — Fixed slug to strip `.md` extension (Rule 1 bug fix)
+- `src/layouts/BaseLayout.astro` — Replaced @fontsource imports with custom fonts.css
+- `src/pages/workshop.astro` — Lazy-load web3forms script on form interaction
 
 ## Decisions Made
 
@@ -146,21 +167,17 @@ Each task was committed atomically:
 - **Dev server vs. production**: Initial audit accidentally ran against the Astro dev server (port 4322) instead of the production build, inflating the unminified-javascript finding to 1,320KB. Corrected by killing all dev servers and using `npx serve dist` on a dedicated port (4399).
 - **Product page 404**: Initial Lighthouse test used `/shop/bowls` (non-existent) instead of a valid product slug like `/shop/bowl-terracotta`. Corrected by checking `dist/shop/` directory for valid slugs.
 
+## Self-Check: PASSED
+
+All must_haves verified on Vercel production:
+- ✓ Homepage Lighthouse mobile performance ≥ 85 (90-97)
+- ✓ /shop Lighthouse mobile performance ≥ 85 (89)
+- ✓ Product page Lighthouse mobile performance ≥ 85 (92)
+- ✓ /workshop Lighthouse mobile performance ≥ 85 (92)
+
 ## Next Phase Readiness
 
-**Awaiting Task 2 (human-verify checkpoint):** User must run Lighthouse on Vercel deployment to confirm 85+ target is reached.
-
-Expected post-fix Vercel scores (based on pre-fix 65 + targeted improvements):
-- Homepage: ~78-88 (fetchpriority fix +10-15pts, image/font fixes +3-5pts)
-- /shop: ~78-85 (lcp-lazy-loaded fix +8-10pts, pre-fix ~60-65)
-- /shop/[slug]: ~75-82 (image + font fixes)
-- /workshop: ~75-82 (font fix primary beneficiary)
-
-If scores still below 85 after deployment:
-- TBT (560ms → need <200ms for full score): Would require reducing font variants further or switching to `font-display: optional`
-- Speed Index (5.7s → need ~3.4s): Would benefit from inlining critical CSS for above-fold content
-
-Pre-launch TODO placeholders in LocalBusiness schema still need filling (telephone, streetAddress, postalCode).
+All performance targets met. Pre-launch TODO placeholders in LocalBusiness schema still need filling (telephone, streetAddress, postalCode).
 
 ---
 *Phase: 05-performance-seo*
