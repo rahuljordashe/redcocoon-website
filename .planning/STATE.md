@@ -119,6 +119,7 @@ None yet.
 
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
+| 1 | UI fixes: remove scroll indicator, badge, hero clipping, process legibility, button restyle, card alignment | 2026-03-12 | 7ce3b7b | [1-ui-fixes-remove-scroll-indicator-12-year](./quick/1-ui-fixes-remove-scroll-indicator-12-year/) |
 
 ### Blockers/Concerns
 
