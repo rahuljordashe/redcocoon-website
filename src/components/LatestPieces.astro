@@ -19,7 +19,7 @@ const featured = allProducts.filter(p => p.data.featured).slice(0, 6);
           currency={product.data.currency}
           images={product.data.images}
           stock={product.data.stock}
-          slug={product.slug}
+          slug={product.id}
         />
       ))}
     </div>
