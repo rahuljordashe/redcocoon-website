@@ -46,9 +46,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — CSS token audit, font self-hosting via @fontsource, typography scale update
-- [ ] 02-02-PLAN.md — Section backgrounds, spacing rhythm, touch targets, card shadows
-- [ ] 02-03-PLAN.md — Image pipeline migration to Astro Image + visual checkpoint
+- [x] 02-01-PLAN.md — CSS token audit, font self-hosting via @fontsource, typography scale update
+- [x] 02-02-PLAN.md — Section backgrounds, spacing rhythm, touch targets, card shadows
+- [x] 02-03-PLAN.md — Image pipeline migration to Astro Image + visual checkpoint
 
 ### Phase 3: Gallery & Products
 **Goal**: Users can browse, filter, and inspect all products on a dedicated gallery page, and reach out to inquire on any piece — including sold-out pieces via a commission path
@@ -60,13 +60,13 @@ Plans:
   3. A visitor can click any product and arrive on a dedicated page (/shop/[slug]) with full details and a DM-to-reserve CTA
   4. A visitor viewing a sold-out Made to Order piece sees a commission inquiry CTA instead of a dead "Sold" state
   5. An international visitor can find clear information about international shipping or inquiry near the reservation flow
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 03-01: Content schema additions (madeToOrder field) and product MD updates
-- [ ] 03-02: GalleryGrid and FilterBar components + /shop page
-- [ ] 03-03: Individual product pages (/shop/[slug]) with lightbox
-- [ ] 03-04: About section and international shipping note
+- [ ] 03-01-PLAN.md — Schema madeToOrder field, product image migration, MTO examples, product.id standardization
+- [ ] 03-02-PLAN.md — GalleryGrid, FilterBar, StockBadge components + /shop page with filtering
+- [ ] 03-03-PLAN.md — Product detail pages (/shop/[slug]) with GLightbox, CommissionCTA, breadcrumbs
+- [ ] 03-04-PLAN.md — AboutMaker section, shipping note, nav link update + visual checkpoint
 
 ### Phase 4: Workshop & Hospitality
 **Goal**: Users can submit a workshop inquiry through a working form, and hospitality clients see dedicated B2B messaging with a direct inquiry path
