@@ -196,25 +196,24 @@ input { font-family: inherit; }
 }
 
 .btn-whatsapp {
-    background: var(--color-whatsapp);
+    background: transparent;
     color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
 }
 
 .btn-whatsapp:hover {
-    background: #1fb855;
+    border-color: rgba(255, 255, 255, 0.6);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
 }
 
 .btn-instagram {
-    background: var(--gradient-instagram);
+    background: var(--color-terracotta);
     color: #fff;
 }
 
 .btn-instagram:hover {
-    filter: brightness(1.1);
+    background: var(--color-terracotta-dark, #a8623a);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(131, 58, 180, 0.3);
 }
 
 /* ---------- Keyframe Animations ---------- */

@@ -82,6 +82,8 @@ const mainImageSrc = imageMap[mainImageKey];
     transition: transform var(--transition-med), box-shadow var(--transition-med);
     position: relative;
     box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
   }
 
   .product-card:hover {
@@ -90,7 +92,9 @@ const mainImageSrc = imageMap[mainImageKey];
   }
 
   .product-card-link {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     text-decoration: none;
     color: inherit;
   }
@@ -130,6 +134,7 @@ const mainImageSrc = imageMap[mainImageKey];
 
   .product-card-info {
     padding: var(--space-lg);
+    flex: 1;
   }
 
   .product-card-name {
@@ -156,7 +161,7 @@ const mainImageSrc = imageMap[mainImageKey];
   .product-card-reserve {
     display: block;
     text-align: center;
-    margin: 0 var(--space-lg) var(--space-lg);
+    margin: auto var(--space-lg) var(--space-lg);
     font-size: var(--text-xs);
     padding: 0.75rem 1rem;
     min-height: 44px;
@@ -172,7 +177,7 @@ const mainImageSrc = imageMap[mainImageKey];
     }
 
     .product-card-reserve {
-      margin: 0 var(--space-md) var(--space-md);
+      margin: auto var(--space-md) var(--space-md);
       padding: 0.65rem 0.75rem;
       min-height: 44px;
       font-size: 0.7rem;

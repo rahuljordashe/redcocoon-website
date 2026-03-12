@@ -7,7 +7,7 @@ const steps = [
   { number: 1, title: 'Browse & Choose', desc: 'Find a piece you love — note the piece code' },
   { number: 2, title: 'Message Us', desc: 'Send us the piece code via:' },
   { number: 3, title: 'Bank Transfer', desc: "We'll confirm availability & send bank details" },
-  { number: 4, title: 'Collect or Deliver', desc: "Pick up from studio or we'll ship island-wide" },
+  { number: 4, title: 'Collect', desc: "Pick up from our studio in Colombo" },
 ];
 ---
 
@@ -104,13 +104,19 @@ const steps = [
   }
 
   .channel-instagram {
-    background: var(--gradient-instagram);
+    background: var(--color-terracotta);
     color: #fff;
   }
 
   .channel-whatsapp {
-    background: var(--color-whatsapp);
-    color: #fff;
+    background: transparent;
+    color: var(--color-espresso);
+    border: 1.5px solid var(--color-beige-dark);
+  }
+
+  .channel-whatsapp:hover {
+    border-color: var(--color-terracotta);
+    color: var(--color-terracotta);
   }
 
   .channel-form {

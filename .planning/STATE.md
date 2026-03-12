@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-12)
 Phase: 1 of 5 (Critical Fixes)
 Plan: 0 of 1 in current phase
 Status: Ready to plan
-Last activity: 2026-03-12 — Roadmap created
+Last activity: 2026-03-12 - Completed quick task 1: UI fixes
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -114,6 +114,11 @@ Recent decisions affecting current work:
 ### Pending Todos
 
 None yet.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
 
 ### Blockers/Concerns
 
