@@ -1,0 +1,60 @@
+---
+import { getInstagramDMLink } from '../utils/instagram';
+import { getWhatsAppLink } from '../utils/whatsapp';
+
+interface Props {
+  name: string;
+  code: string;
+}
+
+const { name, code } = Astro.props;
+const commissionMsg = `Hi, I'd like to commission ${name} (${code})`;
+const igLink = getInstagramDMLink();
+const waLink = getWhatsAppLink(commissionMsg);
+---
+
+<div class="commission-cta">
+  <h3 class="commission-title">Commission This Piece</h3>
+  <p class="commission-desc">This piece is currently sold out but can be made to order. Reach out to discuss details, timeline, and customization.</p>
+  <div class="commission-actions">
+    <a href={igLink} target="_blank" rel="noopener noreferrer" class="btn btn-instagram">DM on Instagram</a>
+    <a href={waLink} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">WhatsApp Us</a>
+  </div>
+</div>
+
+<style>
+  .commission-cta {
+    background: var(--color-cream);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-xl);
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+
+  .commission-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--color-terracotta);
+    margin-bottom: var(--space-sm);
+  }
+
+  .commission-desc {
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    margin-bottom: var(--space-lg);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .commission-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .commission-actions .btn {
+    min-height: 44px;
+  }
+</style>
