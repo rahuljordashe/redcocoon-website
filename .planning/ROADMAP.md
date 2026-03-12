@@ -108,4 +108,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 2. Visual Redesign Foundation | 3/3 | Complete   | 2026-03-12 |
 | 3. Gallery & Products | 3/4 | In Progress|  |
 | 4. Workshop & Hospitality | 2/2 | Complete   | 2026-03-12 |
-| 5. Performance & SEO | 0/2 | Not started | - |
+| 5. Performance & SEO | 1/2 | In Progress|  |

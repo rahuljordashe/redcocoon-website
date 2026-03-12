@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 5 context gathered
-last_updated: "2026-03-12T07:25:29.072Z"
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-12T10:43:18.966Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
   completed_phases: 4
-  total_plans: 10
-  completed_plans: 10
+  total_plans: 12
+  completed_plans: 11
   percent: 0
 ---
 
@@ -61,6 +61,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-gallery-products P04 | 10min | 1 tasks | 3 files |
 | Phase 04-workshop-hospitality P02 | 1min | 1 tasks | 1 files |
 | Phase 04-workshop-hospitality P01 | 3min | 2 tasks | 6 files |
+| Phase 05-performance-seo P01 | 15min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -101,6 +102,9 @@ Recent decisions affecting current work:
 - [Phase 04-workshop-hospitality]: Web3Forms access_key placeholder used in workshop.astro — real key required before launch
 - [Phase 04-workshop-hospitality]: hospitality-ghost styles duplicated in Footer scoped style block — Astro scoping prevents cross-component class sharing
 - [Phase 04-workshop-hospitality]: External CDN scripts require is:inline attribute in Astro to prevent bundler interference
+- [Phase 05-performance-seo]: Default OG image uses Bowls5.jpg (99KB JPEG) not 399x650-01.png (397KB PNG) — WhatsApp 300KB crawler limit
+- [Phase 05-performance-seo]: LocalBusiness schema replaces Organization — enables Google Rich Results with address, hours, phone fields; TODO placeholders marked for pre-launch
+- [Phase 05-performance-seo]: Product JSON-LD in body (not head slot) — BaseLayout has no head slot, Google reads body JSON-LD fine
 
 ### Pending Todos
 
@@ -115,6 +119,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T07:25:29.058Z
-Stopped at: Phase 5 context gathered
-Resume file: .planning/phases/05-performance-seo/05-CONTEXT.md
+Last session: 2026-03-12T10:43:03.948Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: None

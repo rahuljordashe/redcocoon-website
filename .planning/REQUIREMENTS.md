@@ -49,9 +49,9 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Performance & SEO
 
-- [ ] **PERF-01**: Lighthouse mobile performance score >= 85 across all pages
-- [ ] **SEO-01**: Schema.org LocalBusiness + Product structured data on relevant pages
-- [ ] **SEO-02**: Open Graph image is set per product page for social sharing previews
+- [x] **PERF-01**: Lighthouse mobile performance score >= 85 across all pages
+- [x] **SEO-01**: Schema.org LocalBusiness + Product structured data on relevant pages
+- [x] **SEO-02**: Open Graph image is set per product page for social sharing previews
 
 ## v2 Requirements
 
@@ -114,9 +114,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HOSP-02 | Phase 4 | Complete |
 | ABOUT-01 | Phase 3 | Complete |
 | INTL-01 | Phase 3 | Complete |
-| PERF-01 | Phase 5 | Pending |
-| SEO-01 | Phase 5 | Pending |
-| SEO-02 | Phase 5 | Pending |
+| PERF-01 | Phase 5 | Complete |
+| SEO-01 | Phase 5 | Complete |
+| SEO-02 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 28 total
