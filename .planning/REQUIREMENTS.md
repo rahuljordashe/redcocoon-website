@@ -28,8 +28,8 @@ Requirements for this milestone. Each maps to roadmap phases.
 - [x] **GAL-02**: User can filter gallery by collection using filter pill buttons
 - [x] **GAL-03**: Each product shows stock status badge ("Available" / "Sold" / "Made to Order")
 - [x] **GAL-04**: Sold-out pieces with Made to Order enabled show a commission inquiry CTA instead of a dead state
-- [ ] **GAL-05**: User can click a product to view a dedicated detail page at `/shop/[slug]`
-- [ ] **GAL-06**: User can zoom/expand product images via lightbox (GLightbox)
+- [x] **GAL-05**: User can click a product to view a dedicated detail page at `/shop/[slug]`
+- [x] **GAL-06**: User can zoom/expand product images via lightbox (GLightbox)
 - [x] **GAL-07**: All product images use Astro `<Image />` for WebP optimization, lazy loading, and correct sizing
 - [x] **GAL-08**: Piece code badge is visually prominent on product cards
 
@@ -102,8 +102,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GAL-02 | Phase 3 | Complete |
 | GAL-03 | Phase 3 | Complete |
 | GAL-04 | Phase 3 | Complete |
-| GAL-05 | Phase 3 | Pending |
-| GAL-06 | Phase 3 | Pending |
+| GAL-05 | Phase 3 | Complete |
+| GAL-06 | Phase 3 | Complete |
 | GAL-07 | Phase 3 | Complete |
 | GAL-08 | Phase 3 | Complete |
 | WKSP-01 | Phase 4 | Pending |

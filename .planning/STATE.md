@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-gallery-products-02-PLAN.md
-last_updated: "2026-03-12T05:33:27.686Z"
+stopped_at: Completed 03-gallery-products-03-PLAN.md
+last_updated: "2026-03-12T05:39:08.782Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
   completed_phases: 2
   total_plans: 8
-  completed_plans: 6
+  completed_plans: 7
   percent: 0
 ---
 
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-visual-redesign-foundation P03 | 15min | 2 tasks | 18 files |
 | Phase 03-gallery-products P01 | 3min | 2 tasks | 8 files |
 | Phase 03-gallery-products P02 | 3min | 2 tasks | 5 files |
+| Phase 03-gallery-products P03 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,9 @@ Recent decisions affecting current work:
 - [Phase 03-gallery-products]: mugs-fatured-image.jpg filename typo preserved — matches existing product frontmatter references
 - [Phase 03-gallery-products]: product.id in Astro 5 legacy type:content includes .md extension — strip with .replace(/\.md$/, '') for clean /shop/[slug] URLs
 - [Phase 03-gallery-products]: GalleryGrid uses inline card markup not ProductCard — ProductCard uses plain img, would bypass Astro Image WebP optimization
+- [Phase 03-gallery-products]: GLightbox href points to public/ image path for lightbox overlay; Astro Image handles WebP for visible img
+- [Phase 03-gallery-products]: Related products in More from this collection use inline card markup not ProductCard — consistent with GalleryGrid approach
+- [Phase 03-gallery-products]: CommissionCTA shown only when isSold && isMTO — plain sold-out shows sold notice; available shows reserve CTAs
 
 ### Pending Todos
 
@@ -101,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T05:33:27.682Z
-Stopped at: Completed 03-gallery-products-02-PLAN.md
+Last session: 2026-03-12T05:39:08.768Z
+Stopped at: Completed 03-gallery-products-03-PLAN.md
 Resume file: None
