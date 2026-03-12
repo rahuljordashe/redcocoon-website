@@ -51,8 +51,8 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
   <meta name="twitter:image" content={ogImage}>
 
   <!-- Favicon -->
-  <link rel="icon" href="/logo.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/logo.svg">
+  <link rel="icon" href="/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/logo.png">
 
   <!-- Structured Data -->
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -60,7 +60,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
     "@type": "LocalBusiness",
     "name": "Redcocoon Pottery",
     "url": siteUrl,
-    "logo": `${siteUrl}/logo.svg`,
+    "logo": `${siteUrl}/logo.png`,
     "description": "Handcrafted pottery and ceramics. Artisan dinnerware, vases, mugs, and home decor.",
     "image": `${siteUrl}/images/Bowls5.jpg`,
     "telephone": "+94-TODO-PHONE",

@@ -18,7 +18,7 @@ import { getInstagramDMLink, getInstagramProfileLink } from '../utils/instagram'
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="/logo.svg" alt="Redcocoon Pottery" class="footer-logo" width="50" height="50" loading="lazy" decoding="async">
+        <img src="/logo.png" alt="Redcocoon Pottery" class="footer-logo" width="50" height="50" loading="lazy" decoding="async">
         <p>Handcrafted ceramics made with love in our sunlit studio. Every piece tells a story of earth, fire, and human touch.</p>
         <div class="footer-social">
           <a href={getInstagramProfileLink()} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -128,7 +128,7 @@ import { getInstagramDMLink, getInstagramProfileLink } from '../utils/instagram'
   .footer-logo {
     height: 50px;
     margin-bottom: var(--space-lg);
-    filter: brightness(0) invert(0.85);
+    border-radius: 50%;
   }
 
   .footer-brand p {
