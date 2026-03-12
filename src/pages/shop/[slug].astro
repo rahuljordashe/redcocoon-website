@@ -45,6 +45,8 @@ export async function getStaticPaths() {
   }));
 }
 
+const siteUrl = 'https://redcocoon-pottery.vercel.app';
+
 const { product } = Astro.props;
 const { name, code, price, currency, collection, material, stock, images, madeToOrder, description } = product.data;
 const isSold = stock === 0;
@@ -61,12 +63,49 @@ const mainImageKey = images[0];
 const mainImage = imageMap[mainImageKey];
 const dmLink = getInstagramDMLink();
 const reserveLink = getReserveLink(name, price, currency);
+
+// OG image — absolute URL for social sharing
+const ogImageUrl = `${siteUrl}${images[0]}`;
+
+// Product JSON-LD schema
+function getAvailability(stock: number, madeToOrder: boolean): string {
+  if (stock > 0) return "https://schema.org/InStock";
+  if (madeToOrder) return "https://schema.org/MadeToOrder";
+  return "https://schema.org/SoldOut";
+}
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": name,
+  "image": `${siteUrl}${images[0]}`,
+  "description": description || `Handcrafted ${material.toLowerCase()} piece from the ${collection} collection.`,
+  "sku": code,
+  "brand": {
+    "@type": "Brand",
+    "name": "Redcocoon Pottery"
+  },
+  "material": material,
+  "offers": {
+    "@type": "Offer",
+    "price": price,
+    "priceCurrency": currency,
+    "availability": getAvailability(stock, isMTO),
+    "url": `${siteUrl}/shop/${product.id.replace(/\.md$/, '')}`,
+    "seller": {
+      "@type": "Organization",
+      "name": "Redcocoon Pottery"
+    }
+  }
+};
 ---
 
 <BaseLayout
   title={`${name} — Redcocoon Pottery`}
   description={`${name} (${code}) — handcrafted ${material.toLowerCase()} piece from the ${collection} collection. ${formatPrice(price, currency)}`}
+  ogImage={ogImageUrl}
 >
+<script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <div class="container">
     <!-- Breadcrumb -->
     <nav aria-label="Breadcrumb" class="breadcrumb">
