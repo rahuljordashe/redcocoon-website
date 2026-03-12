@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import FilterBar from '../components/FilterBar.astro';
 import GalleryGrid from '../components/GalleryGrid.astro';
+import AboutMaker from '../components/AboutMaker.astro';
 import { getCollection } from 'astro:content';
 
 const allProducts = await getCollection('products');
@@ -23,14 +24,24 @@ const collections = [...new Set(allProducts.map(p => p.data.collection))].sort()
       />
       <FilterBar collections={collections} />
       <GalleryGrid products={allProducts} />
+      <p class="shop-policy">Collection from our Colombo studio. DM us to arrange shipping (at buyer's risk).</p>
     </div>
   </section>
+  <AboutMaker />
 </BaseLayout>
 
 <style>
   .shop-gallery {
     padding: var(--space-5xl) 0;
     background: var(--color-white);
+  }
+
+  .shop-policy {
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    text-align: center;
+    margin-top: var(--space-xl);
+    font-style: italic;
   }
 </style>
 
