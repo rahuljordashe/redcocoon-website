@@ -77,11 +77,11 @@ Plans:
   2. A visitor submitting the workshop form sees a clear success message (or error message) without a page reload
   3. A hospitality client (hotel buyer, restaurant owner) reads messaging clearly addressed to their context — custom ware, volume, collaboration
   4. A hospitality client can initiate a B2B inquiry via WhatsApp with a pre-filled message distinguishing them from a retail buyer
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: WorkshopForm component and /workshop page with Web3Forms integration
-- [ ] 04-02: Hospitality section expansion with B2B messaging and separate inquiry path
+- [ ] 04-01-PLAN.md — Workshop /workshop page with Web3Forms form, hCaptcha, nav + link restoration
+- [ ] 04-02-PLAN.md — Hospitality section expansion with service bullets and email CTA
 
 ### Phase 5: Performance & SEO
 **Goal**: The site passes a Lighthouse mobile performance audit at 85+, and every product page is shareable with a social preview and discoverable by search engines via structured data
