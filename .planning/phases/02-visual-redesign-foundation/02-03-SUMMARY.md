@@ -61,7 +61,7 @@ completed: 2026-03-12
 - **Duration:** 4 min
 - **Started:** 2026-03-11T23:19:05Z
 - **Completed:** 2026-03-11T23:23:00Z
-- **Tasks:** 1 of 2 complete (Task 2 is human-verify checkpoint)
+- **Tasks:** 2 of 2 complete
 - **Files modified:** 18 (12 new images + 6 component/layout files)
 
 ## Accomplishments
@@ -77,8 +77,9 @@ completed: 2026-03-12
 Each task was committed atomically:
 
 1. **Task 1: Move component images to src/assets/images/ and update components** - `f34b797` (feat)
+2. **Task 2: Visual checkpoint — verify complete redesign** - Approved (checkpoint only, no code commit)
 
-**Plan metadata:** TBD (docs commit after checkpoint)
+**Plan metadata:** TBD (docs commit for SUMMARY + state updates)
 
 ## Files Created/Modified
 - `src/assets/images/` - 12 JPEG/PNG images for component optimization (10.jpg, 399x650-01.png, abyee.jpg, Coasters18.jpg, Dinner-sets5.jpg, Enamel.jpg, Fire-Glow.jpg, Kitchen-ware1.jpg, Plates1.jpg, Tea-coffee-set5.jpg, Toast-Plates-new.jpg, Wall-deco5.jpg)
@@ -108,8 +109,15 @@ None - no external service configuration required.
 
 ## Next Phase Readiness
 - Image pipeline migration complete; all component images now go through Astro's build pipeline
+- Phase 2 visual redesign fully approved by user via Playwright screenshot verification — all sections verified: Hero (cream bg), Latest Pieces (3-col grid), Collection Banner (dark espresso), Hospitality (dark bg), Process (dark section with images), Instagram Feed (cream bg 6-image grid), Reservation Flow (4 steps), Footer CTA
 - Phase 3 can migrate product content collection images (from public/images/ string refs to src/assets/ ESM imports) following the same pattern established here
-- Human visual checkpoint (Task 2) is pending — user should run `npm run dev` and verify the complete Phase 2 redesign looks correct
+- No blockers for Phase 3 (Gallery & Products)
+
+## Self-Check: PASSED
+
+- `f34b797` exists in git log — Task 1 commit confirmed
+- `src/assets/images/` contains 12 image files — confirmed
+- Task 2 (visual checkpoint) approved by user — confirmed
 
 ---
 *Phase: 02-visual-redesign-foundation*

@@ -13,7 +13,7 @@ Starting from a working Astro 5 foundation, this milestone adds the three capabi
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Critical Fixes** - Patch two live broken links before building anything new (completed 2026-03-11)
-- [ ] **Phase 2: Visual Redesign Foundation** - Establish the design system, image pipeline, and typography that all new pages inherit
+- [x] **Phase 2: Visual Redesign Foundation** - Establish the design system, image pipeline, and typography that all new pages inherit (completed 2026-03-12)
 - [ ] **Phase 3: Gallery & Products** - Full browsable product gallery with collection filtering, individual product pages, and international context
 - [ ] **Phase 4: Workshop & Hospitality** - Workshop inquiry form and expanded B2B hospitality section
 - [ ] **Phase 5: Performance & SEO** - Lighthouse audit, structured data, and OG images across all pages
@@ -105,7 +105,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Critical Fixes | 1/1 | Complete   | 2026-03-11 |
-| 2. Visual Redesign Foundation | 2/3 | In Progress|  |
+| 2. Visual Redesign Foundation | 3/3 | Complete   | 2026-03-12 |
 | 3. Gallery & Products | 0/4 | Not started | - |
 | 4. Workshop & Hospitality | 0/2 | Not started | - |
 | 5. Performance & SEO | 0/2 | Not started | - |
