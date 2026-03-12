@@ -54,7 +54,7 @@ const dmLink = getInstagramDMLink();
         class:list={['gallery-item', { 'gallery-item--sold': isSold }]}
         data-collection={collection}
       >
-        <a href={`/shop/${product.id}`} class="gallery-item-link">
+        <a href={`/shop/${product.id.replace(/\.md$/, '')}`} class="gallery-item-link">
           <div class="gallery-item-image">
             {imageSrc ? (
               <Image

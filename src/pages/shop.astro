@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import FilterBar from '../components/FilterBar.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import { getCollection } from 'astro:content';
+
+const allProducts = await getCollection('products');
+const collections = [...new Set(allProducts.map(p => p.data.collection))].sort();
+---
+
+<BaseLayout
+  title="Shop — Redcocoon Pottery"
+  description="Browse our full collection of handcrafted pottery. Bowls, vases, plates, mugs, and home decor — each piece wheel-thrown and hand-finished."
+>
+  <section class="shop-gallery" id="shop">
+    <div class="container">
+      <SectionHeader
+        tag="The Collection"
+        title="Handcrafted"
+        titleAccent="Pieces"
+        center={true}
+      />
+      <FilterBar collections={collections} />
+      <GalleryGrid products={allProducts} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .shop-gallery {
+    padding: var(--space-5xl) 0;
+    background: var(--color-white);
+  }
+</style>
+
+<script>
+  // Gallery filter — vanilla JS two-step fade approach
+  const pills = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+  const items = document.querySelectorAll<HTMLElement>('.gallery-item');
+  const countEl = document.querySelector<HTMLParagraphElement>('.gallery-count');
+
+  let currentFilter = 'all';
+  // Track pending hide timers so rapid clicks cancel them
+  const hideTimers = new Map<HTMLElement, ReturnType<typeof setTimeout>>();
+
+  function showItem(item: HTMLElement) {
+    // Cancel any pending hide
+    const timer = hideTimers.get(item);
+    if (timer !== undefined) {
+      clearTimeout(timer);
+      hideTimers.delete(item);
+    }
+    item.style.display = '';
+    // Force a reflow so the transition fires
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        item.style.opacity = '1';
+      });
+    });
+  }
+
+  function hideItem(item: HTMLElement) {
+    item.style.opacity = '0';
+    const timer = setTimeout(() => {
+      item.style.display = 'none';
+      hideTimers.delete(item);
+    }, 300);
+    hideTimers.set(item, timer);
+  }
+
+  function updateCount(filter: string) {
+    if (!countEl) return;
+    if (filter === 'all') {
+      countEl.textContent = '';
+      return;
+    }
+    const visible = [...items].filter(
+      (item) => item.dataset.collection === filter
+    ).length;
+    countEl.textContent = `Showing ${visible} piece${visible !== 1 ? 's' : ''}`;
+  }
+
+  pills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const filter = pill.dataset.collection ?? 'all';
+      if (filter === currentFilter) return;
+      currentFilter = filter;
+
+      // Update active pill
+      pills.forEach((p) => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      // Show/hide items
+      items.forEach((item) => {
+        const match = filter === 'all' || item.dataset.collection === filter;
+        if (match) {
+          showItem(item);
+        } else {
+          hideItem(item);
+        }
+      });
+
+      updateCount(filter);
+    });
+  });
+</script>
