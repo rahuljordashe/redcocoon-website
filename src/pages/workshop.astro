@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+---
+
+<BaseLayout
+  title="Workshop — Redcocoon Pottery"
+  description="Join a pottery workshop at Redcocoon studio in Colombo. Get your hands dirty with clay."
+>
+  <section class="workshop">
+    <div class="container">
+      <SectionHeader
+        tag="Hands-On Experience"
+        title="Workshop"
+        titleAccent="Inquiry"
+        center={true}
+      />
+      <p class="workshop-intro">
+        Come get your hands dirty with us. Whether you're curious about the wheel,
+        looking for a private class, or planning a group event — we'd love to welcome
+        you into the studio. Fill in a few details and we'll be in touch.
+      </p>
+
+      <div class="workshop-form">
+        <form id="workshopForm">
+          <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+          <input type="hidden" name="subject" value="Workshop Inquiry — Redcocoon">
+          <input type="hidden" name="from_name" value="Redcocoon Website">
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+          <div id="workshopFields">
+            <div class="field-group">
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Your name"
+                class="workshop-input"
+                aria-label="Your name"
+              />
+            </div>
+            <div class="field-group">
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="your@email.com"
+                class="workshop-input"
+                aria-label="Email address"
+              />
+            </div>
+            <div class="field-group">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone or WhatsApp (optional)"
+                class="workshop-input"
+                aria-label="Phone or WhatsApp number"
+              />
+            </div>
+            <div class="field-group">
+              <textarea
+                name="message"
+                required
+                rows="4"
+                placeholder="Tell us about what you're interested in — a weekend session, a private class, a group event..."
+                class="workshop-textarea"
+                aria-label="Your message"
+              ></textarea>
+            </div>
+            <div class="h-captcha" data-captcha="true"></div>
+            <button type="submit" class="btn btn-primary workshop-submit">Send Inquiry</button>
+          </div>
+        </form>
+
+        <div id="workshopSuccess" style="display:none; opacity:0;">
+          <div class="success-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <polyline points="5,14 11,20 23,8" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p class="success-message">Thanks! We'll be in touch soon.</p>
+        </div>
+
+        <p id="workshopError" class="workshop-error" style="display:none;" role="alert"></p>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline src="https://web3forms.com/client/script.js" async defer></script>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('workshopForm') as HTMLFormElement | null;
+  const fieldsDiv = document.getElementById('workshopFields') as HTMLDivElement | null;
+  const successDiv = document.getElementById('workshopSuccess') as HTMLDivElement | null;
+  const errorEl = document.getElementById('workshopError') as HTMLParagraphElement | null;
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!fieldsDiv || !successDiv || !errorEl) return;
+
+      // Hide any previous error
+      errorEl.style.display = 'none';
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const json = await response.json();
+
+        if (response.ok && json.success) {
+          // Fade out fields
+          fieldsDiv.style.opacity = '0';
+          setTimeout(() => {
+            fieldsDiv.style.display = 'none';
+            successDiv.style.display = 'flex';
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                successDiv.style.opacity = '1';
+              });
+            });
+          }, 300);
+        } else {
+          errorEl.textContent = json.message || 'Something went wrong. Please try again.';
+          errorEl.style.display = 'block';
+        }
+      } catch {
+        if (errorEl) {
+          errorEl.textContent = 'Network error — please check your connection and try again.';
+          errorEl.style.display = 'block';
+        }
+      }
+    });
+  }
+</script>
+
+<style>
+  .workshop {
+    background: var(--color-cream);
+    padding: var(--space-5xl) 0;
+  }
+
+  .workshop-intro {
+    max-width: 560px;
+    margin: 0 auto var(--space-2xl);
+    text-align: center;
+    color: var(--color-clay);
+    line-height: 1.7;
+  }
+
+  .workshop-form {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  #workshopFields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: opacity var(--transition-med);
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .workshop-input,
+  .workshop-textarea {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--color-beige-dark);
+    border-radius: var(--border-radius);
+    padding: 0.8rem 1rem;
+    font-size: var(--text-base);
+    color: var(--color-espresso);
+    font-family: var(--font-body);
+    min-height: 44px;
+    transition: border-color var(--transition-fast);
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  .workshop-input:focus,
+  .workshop-textarea:focus {
+    border-color: var(--color-terracotta);
+    outline: none;
+  }
+
+  .workshop-input::placeholder,
+  .workshop-textarea::placeholder {
+    color: var(--color-clay);
+    opacity: 0.7;
+  }
+
+  .workshop-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .workshop-submit {
+    width: 100%;
+    min-height: 48px;
+    margin-top: var(--space-md);
+  }
+
+  #workshopSuccess {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    text-align: center;
+    padding: var(--space-3xl) 0;
+    transition: opacity var(--transition-med);
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-sage);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .success-message {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-espresso);
+  }
+
+  .workshop-error {
+    color: var(--color-terracotta);
+    text-align: center;
+    margin-top: var(--space-md);
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 768px) {
+    .workshop {
+      padding: var(--space-3xl) 0;
+    }
+
+    .workshop-form {
+      padding: 0 var(--space-sm);
+    }
+  }
+</style>
