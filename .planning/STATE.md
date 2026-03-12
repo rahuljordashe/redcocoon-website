@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 3 context gathered
-last_updated: "2026-03-12T04:58:42.540Z"
+stopped_at: Completed 03-gallery-products-01-PLAN.md
+last_updated: "2026-03-12T05:27:15.771Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 8
+  completed_plans: 5
   percent: 0
 ---
 
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-visual-redesign-foundation P02 | 4min | 3 tasks | 8 files |
 | Phase 02-visual-redesign-foundation P03 | 4min | 1 tasks | 18 files |
 | Phase 02-visual-redesign-foundation P03 | 15min | 2 tasks | 18 files |
+| Phase 03-gallery-products P01 | 3min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,9 @@ Recent decisions affecting current work:
 - [Phase 02-visual-redesign-foundation]: Images COPIED to src/assets/images/ (not moved) — public/ originals remain for content collection string refs until Phase 3
 - [Phase 02-visual-redesign-foundation]: imageMap pattern (Record<string, ImageMetadata>) used for Process and InstagramFeed — Astro Image requires static imports, not runtime string interpolation
 - [Phase 02-visual-redesign-foundation]: Hero preload link removed from BaseLayout — Astro Image with loading=eager handles above-fold rendering; old /images/399x650-01.png path no longer valid after WebP conversion
+- [Phase 03-gallery-products]: madeToOrder uses schema default(false) — existing product files need no change, only MTO examples set it explicitly
+- [Phase 03-gallery-products]: enamel-vase and wall-decor-plate chosen as MTO examples — non-featured items from different collections for filter testing variety
+- [Phase 03-gallery-products]: mugs-fatured-image.jpg filename typo preserved — matches existing product frontmatter references
 
 ### Pending Todos
 
@@ -94,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T04:58:42.531Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-gallery-products/03-CONTEXT.md
+Last session: 2026-03-12T05:27:15.766Z
+Stopped at: Completed 03-gallery-products-01-PLAN.md
+Resume file: None
