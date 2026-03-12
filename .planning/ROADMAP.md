@@ -91,11 +91,11 @@ Plans:
   1. Running Lighthouse on any page from a mobile preset returns a performance score of 85 or higher
   2. Sharing a product page URL on Instagram or WhatsApp renders a preview image and the piece name/description (not a blank card)
   3. Pasting the site URL into Google's Rich Results Test returns valid LocalBusiness structured data with no errors
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: Lighthouse audit and performance fixes
-- [ ] 05-02: Schema.org structured data and OG image implementation
+- [ ] 05-01-PLAN.md — Preloader removal, BaseLayout ogImage prop, LocalBusiness schema, Product JSON-LD, per-page OG images
+- [ ] 05-02-PLAN.md — Lighthouse mobile audit and data-driven performance fixes + visual checkpoint
 
 ## Progress
 
