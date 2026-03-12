@@ -44,10 +44,11 @@ const dmLink = getInstagramDMLink();
 ---
 
 <div class="gallery-grid">
-  {products.map((product) => {
+  {products.map((product, index) => {
     const { name, code, price, currency = 'LKR', collection, images, stock, madeToOrder } = product.data;
     const imageSrc = imageMap[images[0]];
     const isSold = stock === 0 && !madeToOrder;
+    const isFirst = index === 0;
 
     return (
       <div
@@ -62,7 +63,8 @@ const dmLink = getInstagramDMLink();
                 alt={name}
                 width={400}
                 height={500}
-                loading="lazy"
+                loading={isFirst ? 'eager' : 'lazy'}
+                fetchpriority={isFirst ? 'high' : 'auto'}
               />
             ) : (
               <img
@@ -70,7 +72,8 @@ const dmLink = getInstagramDMLink();
                 alt={name}
                 width={400}
                 height={500}
-                loading="lazy"
+                loading={isFirst ? 'eager' : 'lazy'}
+                fetchpriority={isFirst ? 'high' : 'auto'}
                 decoding="async"
               />
             )}
