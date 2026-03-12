@@ -35,10 +35,10 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Workshop
 
-- [ ] **WKSP-01**: User can submit a workshop inquiry via a form on `/workshop` page
-- [ ] **WKSP-02**: Workshop form collects name, email, and interest/message
-- [ ] **WKSP-03**: Workshop form has spam protection (honeypot + hCaptcha via Web3Forms)
-- [ ] **WKSP-04**: User sees inline success/error feedback after form submission
+- [x] **WKSP-01**: User can submit a workshop inquiry via a form on `/workshop` page
+- [x] **WKSP-02**: Workshop form collects name, email, and interest/message
+- [x] **WKSP-03**: Workshop form has spam protection (honeypot + hCaptcha via Web3Forms)
+- [x] **WKSP-04**: User sees inline success/error feedback after form submission
 
 ### Hospitality & About
 
@@ -106,10 +106,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | GAL-06 | Phase 3 | Complete |
 | GAL-07 | Phase 3 | Complete |
 | GAL-08 | Phase 3 | Complete |
-| WKSP-01 | Phase 4 | Pending |
-| WKSP-02 | Phase 4 | Pending |
-| WKSP-03 | Phase 4 | Pending |
-| WKSP-04 | Phase 4 | Pending |
+| WKSP-01 | Phase 4 | Complete |
+| WKSP-02 | Phase 4 | Complete |
+| WKSP-03 | Phase 4 | Complete |
+| WKSP-04 | Phase 4 | Complete |
 | HOSP-01 | Phase 4 | Complete |
 | HOSP-02 | Phase 4 | Complete |
 | ABOUT-01 | Phase 3 | Complete |

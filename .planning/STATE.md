@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 04-workshop-hospitality-02-PLAN.md
-last_updated: "2026-03-12T07:07:35.639Z"
+stopped_at: Completed 04-workshop-hospitality-01-PLAN.md
+last_updated: "2026-03-12T07:10:51.303Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 10
-  completed_plans: 9
+  completed_plans: 10
   percent: 0
 ---
 
@@ -60,6 +60,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 03-gallery-products P03 | 3min | 2 tasks | 4 files |
 | Phase 03-gallery-products P04 | 10min | 1 tasks | 3 files |
 | Phase 04-workshop-hospitality P02 | 1min | 1 tasks | 1 files |
+| Phase 04-workshop-hospitality P01 | 3min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -97,6 +98,9 @@ Recent decisions affecting current work:
 - [Phase 03-gallery-products]: Espresso background on AboutMaker section maintains alternating light/dark rhythm following the cream gallery section
 - [Phase 04-workshop-hospitality]: Email CTA uses pre-existing .hospitality-ghost CSS class (already defined in component) — no new button styles needed
 - [Phase 04-workshop-hospitality]: Hospitality service bullets use specific product language to help hotel buyers picture the product offering
+- [Phase 04-workshop-hospitality]: Web3Forms access_key placeholder used in workshop.astro — real key required before launch
+- [Phase 04-workshop-hospitality]: hospitality-ghost styles duplicated in Footer scoped style block — Astro scoping prevents cross-component class sharing
+- [Phase 04-workshop-hospitality]: External CDN scripts require is:inline attribute in Astro to prevent bundler interference
 
 ### Pending Todos
 
@@ -111,6 +115,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T07:07:35.625Z
-Stopped at: Completed 04-workshop-hospitality-02-PLAN.md
+Last session: 2026-03-12T07:10:51.293Z
+Stopped at: Completed 04-workshop-hospitality-01-PLAN.md
 Resume file: None

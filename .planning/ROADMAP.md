@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Critical Fixes** - Patch two live broken links before building anything new (completed 2026-03-11)
 - [x] **Phase 2: Visual Redesign Foundation** - Establish the design system, image pipeline, and typography that all new pages inherit (completed 2026-03-12)
 - [ ] **Phase 3: Gallery & Products** - Full browsable product gallery with collection filtering, individual product pages, and international context
-- [ ] **Phase 4: Workshop & Hospitality** - Workshop inquiry form and expanded B2B hospitality section
+- [x] **Phase 4: Workshop & Hospitality** - Workshop inquiry form and expanded B2B hospitality section (completed 2026-03-12)
 - [ ] **Phase 5: Performance & SEO** - Lighthouse audit, structured data, and OG images across all pages
 
 ## Phase Details
@@ -107,5 +107,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | 1. Critical Fixes | 1/1 | Complete   | 2026-03-11 |
 | 2. Visual Redesign Foundation | 3/3 | Complete   | 2026-03-12 |
 | 3. Gallery & Products | 3/4 | In Progress|  |
-| 4. Workshop & Hospitality | 1/2 | In Progress|  |
+| 4. Workshop & Hospitality | 2/2 | Complete   | 2026-03-12 |
 | 5. Performance & SEO | 0/2 | Not started | - |
