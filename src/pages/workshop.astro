@@ -88,7 +88,6 @@ import SectionHeader from '../components/SectionHeader.astro';
     </div>
   </section>
 
-  <script is:inline src="https://web3forms.com/client/script.js" async defer></script>
 </BaseLayout>
 
 <script>
@@ -96,6 +95,23 @@ import SectionHeader from '../components/SectionHeader.astro';
   const fieldsDiv = document.getElementById('workshopFields') as HTMLDivElement | null;
   const successDiv = document.getElementById('workshopSuccess') as HTMLDivElement | null;
   const errorEl = document.getElementById('workshopError') as HTMLParagraphElement | null;
+
+  // Lazy-load web3forms/hCaptcha only when user interacts with the form
+  let web3formsLoaded = false;
+  function loadWeb3Forms() {
+    if (web3formsLoaded) return;
+    web3formsLoaded = true;
+    const s = document.createElement('script');
+    s.src = 'https://web3forms.com/client/script.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }
+
+  // Load on first form interaction (focus, click)
+  if (form) {
+    form.addEventListener('focusin', loadWeb3Forms, { once: true });
+    form.addEventListener('click', loadWeb3Forms, { once: true });
+  }
 
   if (form) {
     form.addEventListener('submit', async (e) => {
