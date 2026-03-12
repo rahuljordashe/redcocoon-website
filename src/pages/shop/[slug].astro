@@ -1,0 +1,469 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StockBadge from '../../components/StockBadge.astro';
+import CommissionCTA from '../../components/CommissionCTA.astro';
+import { formatPrice } from '../../utils/format';
+import { getInstagramDMLink } from '../../utils/instagram';
+import { getReserveLink } from '../../utils/whatsapp';
+import 'glightbox/dist/css/glightbox.css';
+
+// Static image imports — keys must match product frontmatter values exactly
+import imgBowls5 from '../../assets/images/Bowls5.jpg';
+import imgChipDip from '../../assets/images/Chip-dip-sets4.jpg';
+import imgCoasters from '../../assets/images/Coasters18.jpg';
+import imgDinner from '../../assets/images/Dinner-sets5.jpg';
+import imgEnamel from '../../assets/images/Enamel.jpg';
+import imgKitchen from '../../assets/images/Kitchen-ware1.jpg';
+import imgMugs from '../../assets/images/mugs-fatured-image.jpg';
+import imgTea from '../../assets/images/Tea-coffee-set5.jpg';
+import imgToast from '../../assets/images/Toast-Plates-new.jpg';
+import imgVases from '../../assets/images/Vases3.jpg';
+import imgWallDeco from '../../assets/images/Wall-deco5.jpg';
+
+const imageMap: Record<string, ImageMetadata> = {
+  '/images/Bowls5.jpg': imgBowls5,
+  '/images/Chip-dip-sets4.jpg': imgChipDip,
+  '/images/Coasters18.jpg': imgCoasters,
+  '/images/Dinner-sets5.jpg': imgDinner,
+  '/images/Enamel.jpg': imgEnamel,
+  '/images/Kitchen-ware1.jpg': imgKitchen,
+  '/images/mugs-fatured-image.jpg': imgMugs,
+  '/images/Tea-coffee-set5.jpg': imgTea,
+  '/images/Toast-Plates-new.jpg': imgToast,
+  '/images/Vases3.jpg': imgVases,
+  '/images/Wall-deco5.jpg': imgWallDeco,
+};
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map(product => ({
+    params: { slug: product.id.replace(/\.md$/, '') },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { name, code, price, currency, collection, material, stock, images, madeToOrder, description } = product.data;
+const isSold = stock === 0;
+const isMTO = madeToOrder === true;
+
+// Related products (same collection, excluding current)
+const allProducts = await getCollection('products');
+const related = allProducts
+  .filter(p => p.data.collection === collection && p.id !== product.id)
+  .slice(0, 3);
+
+// Main image
+const mainImageKey = images[0];
+const mainImage = imageMap[mainImageKey];
+const dmLink = getInstagramDMLink();
+const reserveLink = getReserveLink(name, price, currency);
+---
+
+<BaseLayout
+  title={`${name} — Redcocoon Pottery`}
+  description={`${name} (${code}) — handcrafted ${material.toLowerCase()} piece from the ${collection} collection. ${formatPrice(price, currency)}`}
+>
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <ol>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href={`/shop?collection=${encodeURIComponent(collection)}`}>{collection}</a></li>
+        <li aria-current="page">{name}</li>
+      </ol>
+    </nav>
+
+    <!-- Product Detail -->
+    <div class="product-detail">
+      <!-- Image -->
+      <div class="product-image">
+        <a href={mainImageKey} class="glightbox" data-gallery="product">
+          {mainImage ? (
+            <Image
+              src={mainImage}
+              alt={name}
+              width={600}
+              height={750}
+              loading="eager"
+            />
+          ) : (
+            <img
+              src={mainImageKey}
+              alt={name}
+              width={600}
+              height={750}
+              loading="eager"
+              decoding="async"
+            />
+          )}
+        </a>
+      </div>
+
+      <!-- Info -->
+      <div class="product-info">
+        <span class="product-code">{code}</span>
+        <h1 class="product-name">{name}</h1>
+        <span class="product-price">{formatPrice(price, currency)}</span>
+        <StockBadge stock={stock} madeToOrder={madeToOrder} />
+
+        {description && (
+          <p class="product-description">{description}</p>
+        )}
+
+        <dl class="product-meta">
+          <div>
+            <dt>Collection</dt>
+            <dd>{collection}</dd>
+          </div>
+          <div>
+            <dt>Material</dt>
+            <dd>{material}</dd>
+          </div>
+        </dl>
+
+        {isSold && isMTO ? (
+          <CommissionCTA name={name} code={code} />
+        ) : isSold ? (
+          <p class="sold-notice">This piece has been sold.</p>
+        ) : (
+          <div class="product-actions">
+            <a href={dmLink} target="_blank" rel="noopener noreferrer" class="btn btn-instagram">DM to Reserve</a>
+            <a href={reserveLink} target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">WhatsApp Us</a>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- More from this collection -->
+    {related.length > 0 && (
+      <section class="related-products">
+        <h2 class="related-title">More from {collection}</h2>
+        <div class="related-grid">
+          {related.map(p => {
+            const relImageSrc = imageMap[p.data.images[0]];
+            const relSlug = p.id.replace(/\.md$/, '');
+            return (
+              <a href={`/shop/${relSlug}`} class="related-card">
+                <div class="related-card-image">
+                  {relImageSrc ? (
+                    <img
+                      src={p.data.images[0]}
+                      alt={p.data.name}
+                      width={300}
+                      height={375}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <img
+                      src={p.data.images[0]}
+                      alt={p.data.name}
+                      width={300}
+                      height={375}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  <span class="related-card-code">{p.data.code}</span>
+                </div>
+                <div class="related-card-info">
+                  <StockBadge stock={p.data.stock} madeToOrder={p.data.madeToOrder} />
+                  <h3 class="related-card-name">{p.data.name}</h3>
+                  <span class="related-card-price">{formatPrice(p.data.price, p.data.currency)}</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
+  </div>
+
+  <script>
+    import GLightbox from 'glightbox';
+    document.addEventListener('DOMContentLoaded', () => {
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: false,
+        autoplayVideos: false,
+      });
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  /* Breadcrumb */
+  .breadcrumb {
+    padding: var(--space-xl) 0 0;
+  }
+
+  .breadcrumb ol {
+    display: flex;
+    gap: var(--space-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .breadcrumb li + li::before {
+    content: '/';
+    margin-right: var(--space-sm);
+    color: var(--color-clay);
+  }
+
+  .breadcrumb a {
+    color: var(--color-clay);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-terracotta);
+  }
+
+  .breadcrumb [aria-current="page"] {
+    color: var(--color-espresso);
+    font-weight: 500;
+  }
+
+  /* Product Detail Layout */
+  .product-detail {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-3xl);
+    align-items: start;
+    padding: var(--space-3xl) 0;
+  }
+
+  @media (max-width: 768px) {
+    .product-detail {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      padding: var(--space-xl) 0;
+    }
+  }
+
+  /* Product Image */
+  .product-image {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+  }
+
+  .product-image a {
+    display: block;
+  }
+
+  .product-image img,
+  .product-image :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: zoom-in;
+    transition: transform var(--transition-med);
+  }
+
+  .product-image:hover img,
+  .product-image:hover :global(img) {
+    transform: scale(1.02);
+  }
+
+  /* Product Info */
+  .product-code {
+    display: inline-block;
+    background: rgba(42, 36, 32, 0.08);
+    color: var(--color-espresso);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    margin-bottom: var(--space-sm);
+  }
+
+  .product-name {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: var(--color-espresso);
+    margin: var(--space-md) 0;
+    line-height: 1.2;
+  }
+
+  .product-price {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-terracotta);
+    display: block;
+    margin-bottom: var(--space-md);
+  }
+
+  .product-description {
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    line-height: 1.6;
+    margin: var(--space-md) 0;
+  }
+
+  /* Product Meta */
+  .product-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+    padding: var(--space-lg) 0;
+    border-top: 1px solid rgba(212, 200, 181, 0.4);
+    border-bottom: 1px solid rgba(212, 200, 181, 0.4);
+  }
+
+  .product-meta dt {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--ls-wide);
+    color: var(--color-clay);
+    margin-bottom: 0.2rem;
+  }
+
+  .product-meta dd {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-espresso);
+    margin: 0;
+  }
+
+  /* Product Actions */
+  .product-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-top: var(--space-xl);
+  }
+
+  .product-actions .btn {
+    min-height: 44px;
+  }
+
+  .sold-notice {
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    font-style: italic;
+    margin-top: var(--space-xl);
+  }
+
+  /* Related Products */
+  .related-products {
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid rgba(212, 200, 181, 0.3);
+  }
+
+  .related-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-espresso);
+    margin-bottom: var(--space-xl);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  @media (max-width: 768px) {
+    .related-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Related Card */
+  .related-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-med), box-shadow var(--transition-med);
+  }
+
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .related-card-image {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--color-cream);
+  }
+
+  .related-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-med);
+  }
+
+  .related-card:hover .related-card-image img {
+    transform: scale(1.03);
+  }
+
+  .related-card-code {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    background: rgba(42, 36, 32, 0.75);
+    color: var(--color-cream);
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+    z-index: 1;
+  }
+
+  .related-card-info {
+    padding: var(--space-md);
+  }
+
+  .related-card-name {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--color-espresso);
+    margin: var(--space-xs) 0;
+  }
+
+  .related-card-price {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-terracotta);
+    display: block;
+  }
+</style>
