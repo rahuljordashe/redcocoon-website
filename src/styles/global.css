@@ -279,6 +279,11 @@ input { font-family: inherit; }
     html { scroll-behavior: auto; }
 }
 
+/* ---------- Gallery ---------- */
+.gallery-item {
+  transition: opacity 0.3s var(--ease-out);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
     :root {

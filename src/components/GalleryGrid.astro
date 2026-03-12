@@ -1,0 +1,241 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import StockBadge from './StockBadge.astro';
+import { formatPrice } from '../utils/format';
+import { getInstagramDMLink } from '../utils/instagram';
+
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  products: CollectionEntry<'products'>[];
+}
+
+const { products } = Astro.props;
+
+// Static image imports — keys must match product frontmatter values exactly
+import imgBowls5 from '../assets/images/Bowls5.jpg';
+import imgChipDip from '../assets/images/Chip-dip-sets4.jpg';
+import imgCoasters from '../assets/images/Coasters18.jpg';
+import imgDinner from '../assets/images/Dinner-sets5.jpg';
+import imgEnamel from '../assets/images/Enamel.jpg';
+import imgKitchen from '../assets/images/Kitchen-ware1.jpg';
+import imgMugs from '../assets/images/mugs-fatured-image.jpg';
+import imgTea from '../assets/images/Tea-coffee-set5.jpg';
+import imgToast from '../assets/images/Toast-Plates-new.jpg';
+import imgVases from '../assets/images/Vases3.jpg';
+import imgWallDeco from '../assets/images/Wall-deco5.jpg';
+
+const imageMap: Record<string, ImageMetadata> = {
+  '/images/Bowls5.jpg': imgBowls5,
+  '/images/Chip-dip-sets4.jpg': imgChipDip,
+  '/images/Coasters18.jpg': imgCoasters,
+  '/images/Dinner-sets5.jpg': imgDinner,
+  '/images/Enamel.jpg': imgEnamel,
+  '/images/Kitchen-ware1.jpg': imgKitchen,
+  '/images/mugs-fatured-image.jpg': imgMugs,
+  '/images/Tea-coffee-set5.jpg': imgTea,
+  '/images/Toast-Plates-new.jpg': imgToast,
+  '/images/Vases3.jpg': imgVases,
+  '/images/Wall-deco5.jpg': imgWallDeco,
+};
+
+const dmLink = getInstagramDMLink();
+---
+
+<div class="gallery-grid">
+  {products.map((product) => {
+    const { name, code, price, currency = 'LKR', collection, images, stock, madeToOrder } = product.data;
+    const imageSrc = imageMap[images[0]];
+    const isSold = stock === 0 && !madeToOrder;
+
+    return (
+      <div
+        class:list={['gallery-item', { 'gallery-item--sold': isSold }]}
+        data-collection={collection}
+      >
+        <a href={`/shop/${product.id}`} class="gallery-item-link">
+          <div class="gallery-item-image">
+            {imageSrc ? (
+              <Image
+                src={imageSrc}
+                alt={name}
+                width={400}
+                height={500}
+                loading="lazy"
+              />
+            ) : (
+              <img
+                src={images[0]}
+                alt={name}
+                width={400}
+                height={500}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <span class="gallery-item-code">{code}</span>
+          </div>
+          <div class="gallery-item-info">
+            <div class="gallery-item-badges">
+              <StockBadge stock={stock} madeToOrder={madeToOrder} />
+            </div>
+            <h3 class="gallery-item-name">{name}</h3>
+            <span class="gallery-item-price">{formatPrice(price, currency)}</span>
+          </div>
+        </a>
+        <a
+          href={dmLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-instagram gallery-item-reserve"
+        >
+          DM to Reserve
+        </a>
+      </div>
+    );
+  })}
+</div>
+<p class="gallery-count" aria-live="polite"></p>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+
+  .gallery-item {
+    background: var(--color-white);
+    border-radius: var(--border-radius-lg);
+    overflow: visible;
+    box-shadow: var(--shadow-card);
+    transition: transform var(--transition-med), box-shadow var(--transition-med), opacity 0.3s var(--ease-out);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .gallery-item-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .gallery-item-image {
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: var(--color-cream);
+    position: relative;
+    border-radius: var(--border-radius-img) var(--border-radius-img) 0 0;
+  }
+
+  .gallery-item-image img,
+  .gallery-item-image :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-med);
+  }
+
+  .gallery-item:hover .gallery-item-image img,
+  .gallery-item:hover .gallery-item-image :global(img) {
+    transform: scale(1.03);
+  }
+
+  .gallery-item--sold .gallery-item-image img,
+  .gallery-item--sold .gallery-item-image :global(img) {
+    filter: saturate(0.4);
+    opacity: 0.7;
+  }
+
+  .gallery-item-code {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    background: rgba(42, 36, 32, 0.75);
+    color: var(--color-cream);
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.5rem;
+    border-radius: 100px;
+    z-index: 1;
+  }
+
+  .gallery-item-info {
+    padding: var(--space-lg);
+    padding-bottom: var(--space-sm);
+  }
+
+  .gallery-item-badges {
+    margin-bottom: var(--space-sm);
+  }
+
+  .gallery-item-name {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-espresso);
+    margin-bottom: var(--space-xs);
+  }
+
+  .gallery-item-price {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-terracotta);
+    display: block;
+  }
+
+  .gallery-item-reserve {
+    display: block;
+    text-align: center;
+    margin: var(--space-sm) var(--space-lg) var(--space-lg);
+    font-size: var(--text-xs);
+    padding: 0.75rem 1rem;
+    min-height: 44px;
+  }
+
+  .gallery-count {
+    text-align: center;
+    margin-top: var(--space-xl);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--color-clay);
+    min-height: 1.5em;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-item-info {
+      padding: var(--space-md);
+      padding-bottom: var(--space-xs);
+    }
+
+    .gallery-item-name {
+      font-size: 0.95rem;
+    }
+
+    .gallery-item-reserve {
+      margin: var(--space-xs) var(--space-md) var(--space-md);
+      padding: 0.65rem 0.75rem;
+      font-size: 0.7rem;
+    }
+  }
+</style>
