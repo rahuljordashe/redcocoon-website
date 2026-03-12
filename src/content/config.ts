@@ -22,6 +22,7 @@ const products = defineCollection({
     stock: z.number().default(0),
     images: z.array(z.string()),
     featured: z.boolean().default(false),
+    madeToOrder: z.boolean().default(false),
     description: z.string().optional(),
   }),
 });
