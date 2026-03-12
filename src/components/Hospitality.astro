@@ -15,8 +15,14 @@ const quoteLink = getQuoteLink();
         <span class="hospitality-tag">For Hotels & Restaurants</span>
         <h2 class="hospitality-title">Tableware as unique as your venue</h2>
         <p class="hospitality-desc">We work with chefs and hoteliers across Sri Lanka to create bespoke ceramic collections — dinnerware, serving platters, and accent pieces that tell your brand's story.</p>
+        <ul class="hospitality-services">
+          <li>Custom dinnerware sets tailored to your menu</li>
+          <li>Serving platters &amp; signature accent pieces</li>
+          <li>Full venue ceramic collections, end to end</li>
+        </ul>
         <div class="hospitality-actions">
           <a href={quoteLink} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Discuss a Project</a>
+          <a href="mailto:hello@redcocoon.com?subject=Hospitality%20Inquiry" class="btn btn-ghost hospitality-ghost">Email Us</a>
         </div>
       </div>
       <div class="hospitality-photos">
@@ -77,8 +83,36 @@ const quoteLink = getQuoteLink();
   .hospitality-desc {
     color: var(--color-beige);
     line-height: 1.7;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-lg);
     max-width: 480px;
+  }
+
+  .hospitality-services {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .hospitality-services li {
+    color: var(--color-beige);
+    font-size: var(--text-sm);
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .hospitality-services li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-terracotta-light);
   }
 
   .hospitality-actions {
