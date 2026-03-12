@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-gallery-products-01-PLAN.md
-last_updated: "2026-03-12T05:27:15.771Z"
+stopped_at: Completed 03-gallery-products-02-PLAN.md
+last_updated: "2026-03-12T05:33:27.686Z"
 last_activity: 2026-03-12 — Roadmap created
 progress:
   total_phases: 5
   completed_phases: 2
   total_plans: 8
-  completed_plans: 5
+  completed_plans: 6
   percent: 0
 ---
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 02-visual-redesign-foundation P03 | 4min | 1 tasks | 18 files |
 | Phase 02-visual-redesign-foundation P03 | 15min | 2 tasks | 18 files |
 | Phase 03-gallery-products P01 | 3min | 2 tasks | 8 files |
+| Phase 03-gallery-products P02 | 3min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,8 @@ Recent decisions affecting current work:
 - [Phase 03-gallery-products]: madeToOrder uses schema default(false) — existing product files need no change, only MTO examples set it explicitly
 - [Phase 03-gallery-products]: enamel-vase and wall-decor-plate chosen as MTO examples — non-featured items from different collections for filter testing variety
 - [Phase 03-gallery-products]: mugs-fatured-image.jpg filename typo preserved — matches existing product frontmatter references
+- [Phase 03-gallery-products]: product.id in Astro 5 legacy type:content includes .md extension — strip with .replace(/\.md$/, '') for clean /shop/[slug] URLs
+- [Phase 03-gallery-products]: GalleryGrid uses inline card markup not ProductCard — ProductCard uses plain img, would bypass Astro Image WebP optimization
 
 ### Pending Todos
 
@@ -98,6 +101,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-12T05:27:15.766Z
-Stopped at: Completed 03-gallery-products-01-PLAN.md
+Last session: 2026-03-12T05:33:27.682Z
+Stopped at: Completed 03-gallery-products-02-PLAN.md
 Resume file: None

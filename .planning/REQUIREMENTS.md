@@ -24,8 +24,8 @@ Requirements for this milestone. Each maps to roadmap phases.
 
 ### Gallery & Products
 
-- [ ] **GAL-01**: User can browse all products on a dedicated `/shop` gallery page
-- [ ] **GAL-02**: User can filter gallery by collection using filter pill buttons
+- [x] **GAL-01**: User can browse all products on a dedicated `/shop` gallery page
+- [x] **GAL-02**: User can filter gallery by collection using filter pill buttons
 - [x] **GAL-03**: Each product shows stock status badge ("Available" / "Sold" / "Made to Order")
 - [x] **GAL-04**: Sold-out pieces with Made to Order enabled show a commission inquiry CTA instead of a dead state
 - [ ] **GAL-05**: User can click a product to view a dedicated detail page at `/shop/[slug]`
@@ -98,8 +98,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | VIS-05 | Phase 2 | Complete |
 | VIS-06 | Phase 2 | Complete |
 | VIS-07 | Phase 2 | Complete |
-| GAL-01 | Phase 3 | Pending |
-| GAL-02 | Phase 3 | Pending |
+| GAL-01 | Phase 3 | Complete |
+| GAL-02 | Phase 3 | Complete |
 | GAL-03 | Phase 3 | Complete |
 | GAL-04 | Phase 3 | Complete |
 | GAL-05 | Phase 3 | Pending |
